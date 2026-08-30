@@ -1,0 +1,57 @@
+{
+  "record_type": "supplemental observational summary; raw per-request inputs and generated clips are not included",
+  "scope": "One 8x B200 SXM node, vllm/vllm-omni:cosmos3, nvidia/Cosmos3-Super snapshot e0262be9, 1280x720/189f/24fps",
+  "recommended_layout": "CFG-2 x Ulysses-4 x HSDP-8 (--cfg-parallel-size 2 --ulysses-degree 4 --use-hsdp --hsdp-shard-size 8)",
+  "outcome": "The recommended layout served successfully on B200; the runtime reported ulysses=4 and ring=1.",
+  "anchor_guardrails_on": {
+    "denoise_steps": 35,
+    "seed": 17,
+    "n": 3,
+    "client_wall_s": [87, 85, 85],
+    "server_generation_ms": 83595,
+    "server_generation_s": 83.6,
+    "sha256": "d4e7c49c324270cfd476c16fa3c022a9aa0388496f7514a877b5e4fd7ce6bc1f"
+  },
+  "recommended_vs_tp8_guardrails_off": {
+    "steps_35": { "recommended_wall_s": [70, 68, 69], "tp8_wall_s": [78, 77, 77], "recommended_faster_pct": 10.7 },
+    "steps_50": { "recommended_wall_s": 91, "tp8_wall_s": 104, "recommended_faster_pct": 12.5 },
+    "note": "The recommended layout was about 9% faster on H200 and 10.7% to 12.5% faster in these B200 comparisons. Other GPU generations were not tested."
+  },
+  "per_step_decomposition": {
+    "recommended_per_step_s": 1.467,
+    "fixed_cost_s": 17.7,
+    "note": "Removing the approximately 3-second encode portion leaves about 14.7 seconds, close to H200's 14.4-second non-denoising overhead. The fitted B200 per-step time was 2.08x lower."
+  },
+  "ladder_guardrails_off": {
+    "sample": "n=1 per cell at seed 17",
+    "gpus_1_s": 377,
+    "gpus_4_s": 122,
+    "gpus_8_tp_s": 77.3,
+    "gpus_8_hybrid_s": 69.0,
+    "note": "Isolated single-service cells; the unused GPUs did no benchmark work. The sequential full-node topology cells are in b200-topology.json."
+  },
+  "ladder_vs_published_grid": {
+    "published_nvidia_s": { "gpus_1": 390.28, "gpus_4": 113.31, "gpus_8": 62.11 },
+    "measured_vs_nvidia": { "gpus_1": "3.4% lower latency", "gpus_4": "7.7% higher latency", "gpus_8": "24.5% higher latency" },
+    "scaling_1_to_8": { "measured": "4.88x", "nvidia": "6.28x" },
+    "note": "The NVIDIA figures come from NVIDIA/cosmos inference_benchmarks.md. The compared runs used different runtime and driver versions, so this record makes no causal attribution."
+  },
+  "concurrency_guardrails_on": {
+    "clips_per_hour": { "c1": 49.06, "c2": 54.99 },
+    "c1_to_c2_gain_pct": 12.1,
+    "peak_memory_mb": { "c1": 38562, "c2": 38562 },
+    "note": "The client timeout was 5400 seconds. Reported peak memory was equal in these two cells, consistent with queueing."
+  },
+  "determinism": {
+    "within_server_instance": "byte-identical sha256 at fixed seed",
+    "across_restart": "not reproducible; expected",
+    "same_config_restart_floor_psnr_median_db": [32.13, 32.17],
+    "restart_floor_n_crossings": 2,
+    "note": "B200 restart band is tighter than H200's 26.8-29.0 dB; do not port the H200 floor to B200"
+  },
+  "v0260_control": {
+    "image": "vllm/vllm-omni:v0.26.0 sha256:5cba1538c6f8ee81e8bea6708c24e68d7b2640f466a9fbf2ef15e68f2168b48b",
+    "guardrails_on": "initialization fails because the v0.26.0 image does not include the cosmos-guardrail package",
+    "guardrails_off": { "client_wall_s": 72, "note": "output differs from the pinned image at the same seed: median PSNR 30.54 dB, below the B200 restart band" }
+  }
+}

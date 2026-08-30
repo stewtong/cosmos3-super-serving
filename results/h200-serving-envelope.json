@@ -1,0 +1,66 @@
+{
+  "record_type": "supplemental observational summary; raw per-request inputs and generated clips are not included",
+  "scope": "One 8x H200 SXM node, vllm/vllm-omni:cosmos3, nvidia/Cosmos3-Super snapshot e0262be9, 1280x720/189f/24fps, seeds and prompts as recorded in h200-environment.json and METHOD.md",
+  "recommended_layout": "CFG-2 x Ulysses-4 x HSDP-8 (--cfg-parallel-size 2 --ulysses-degree 4 --use-hsdp --hsdp-shard-size 8)",
+  "anchor_35step": {
+    "server_generation_mean_s": 120.57,
+    "server_generation_runs_s": [120.684, 120.468, 120.547],
+    "n": 3,
+    "server_generation_is": "stage_gen_time_ms mean",
+    "client_wall_range_s": [123, 125],
+    "denoise_steps": 35,
+    "measured_denoise_per_step_s_per_iter": [3.03, 3.06],
+    "note_per_step": "read from the sampler progress bar, not derived from the total",
+    "fixed_non_denoise_overhead_s": 14.4,
+    "guardrail_posture": "disabled for this cell"
+  },
+  "anchor_50step": {
+    "server_generation_mean_s": 166.26,
+    "server_generation_n": 1,
+    "client_wall_s": [168, 169, 168],
+    "client_wall_n": 3,
+    "denoise_steps": 50,
+    "guardrail_posture": "disabled"
+  },
+  "tp8_control": {
+    "flags": "--tensor-parallel-size 8",
+    "steps_35_server_generation_mean_s": 131.26,
+    "steps_35_runs_s": [131.23, 131.353, 131.183],
+    "steps_35_client_wall_s": 135,
+    "steps_50_server_generation_mean_s": 181.31,
+    "steps_50_client_wall_s": 185,
+    "measured_denoise_per_step_s_per_iter": [3.33, 3.36],
+    "fixed_non_denoise_overhead_s": 14.3,
+    "note": "recommended layout is about 9% faster than TP-8 on the same host at both step counts (per-step 3.04 vs 3.34 s)"
+  },
+  "determinism": {
+    "within_server_instance": "byte-identical sha256 at fixed seed",
+    "across_restart": "not reproducible; expected",
+    "same_config_restart_floor_psnr_median_db": [26.81, 28.99],
+    "restart_floor_n_crossings": 4,
+    "tp8_vs_recommended": "sits inside the same-config restart band; no evidence TP-8 alters output",
+    "note": "do not compare outputs across server restarts as a correctness signal"
+  },
+  "guardrail_cost": {
+    "anchor_prompt_189f": { "overhead_s": 18.4, "overhead_pct": 15.3, "guardrails_on_server_s": 139.01, "guardrails_off_server_s": 120.57 },
+    "random_prompt_cell_189f": { "overhead_s": 2, "overhead_pct": 1.7, "note": "about 9x smaller; cost is content dependent" },
+    "note": "guardrails on changes output bytes vs off; report cost tied to a prompt, never as a constant"
+  },
+  "concurrency_production_shape": {
+    "shape": "1280x720 / 189f / 35 steps, guardrails on, random prompts, vLLM-Omni benchmark harness",
+    "clips_per_hour": { "c1": 28.21, "c2": 30.43, "c4": 30.78, "c8": 30.96 },
+    "c1_to_c8_gain_pct": 9.8,
+    "mean_latency_s": { "c1": 127.6, "c2": 208.2, "c4": 382.0, "c8": 729.0 },
+    "p50_latency_s": { "c1": 127.6, "c2": 230.1, "c4": 461.4, "c8": 923.3 },
+    "peak_memory_mb": { "c1": 38562, "c2": 38562, "c4": 38564, "c8": 38564 },
+    "note_memory": "Peak memory stayed within 2 MB across an eightfold increase in in-flight work, consistent with queueing rather than batching.",
+    "video_seconds_per_wall_second": { "c1": 0.0617, "c2": 0.0666, "c4": 0.0673, "c8": 0.0677 },
+    "admission_recommendation": "concurrency one; additional in-flight requests mainly increased queueing"
+  },
+  "startup": {
+    "recommended_layout_warm_ready_s": [280, 290],
+    "tp8_warm_ready_s": 90,
+    "cold_page_cache_overhead_s": 320,
+    "note": "HSDP sharded layouts take longer to start than pure TP-8"
+  }
+}

@@ -1,0 +1,3056 @@
+{
+  "cells": {
+    "T1C2": {
+      "attempts": [
+        {
+          "attempt_id": "T1C2-r0-a000-00",
+          "client_wall_s": 68.34,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:36:55.032789Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:35:46.692972Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a001-01",
+          "client_wall_s": 131.69,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:37:58.384264Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:35:46.693814Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a002-02",
+          "client_wall_s": 68.174,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:39:06.563641Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:37:58.389328Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a003-03",
+          "client_wall_s": 131.571,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:40:09.961358Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:37:58.390003Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a004-04",
+          "client_wall_s": 68.581,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:41:18.548743Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:40:09.967977Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a005-05",
+          "client_wall_s": 131.845,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:42:21.813535Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:40:09.968551Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a006-06",
+          "client_wall_s": 68.326,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:43:30.145324Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:42:21.819651Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a007-07",
+          "client_wall_s": 131.467,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:44:33.287513Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:42:21.820230Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a008-08",
+          "client_wall_s": 68.397,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:45:41.689910Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:44:33.292875Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a009-09",
+          "client_wall_s": 131.827,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:46:45.120642Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:44:33.293729Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a010-10",
+          "client_wall_s": 68.455,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:47:53.581813Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:46:45.127255Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a011-11",
+          "client_wall_s": 131.771,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:48:56.899273Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:46:45.128029Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a012-12",
+          "client_wall_s": 68.307,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:50:05.212634Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:48:56.905524Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a013-13",
+          "client_wall_s": 131.882,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:51:08.788273Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:48:56.906255Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a014-14",
+          "client_wall_s": 68.364,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:52:17.157699Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:51:08.793514Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a015-15",
+          "client_wall_s": 131.812,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:53:20.606255Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:51:08.794216Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a016-16",
+          "client_wall_s": 68.48,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:54:29.092836Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:53:20.612698Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a017-17",
+          "client_wall_s": 131.698,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:55:32.311391Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:53:20.613528Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a018-18",
+          "client_wall_s": 68.36,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:56:40.677934Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:55:32.318060Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a019-19",
+          "client_wall_s": 131.683,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:57:44.001470Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:55:32.318769Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a020-20",
+          "client_wall_s": 68.204,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:58:52.210448Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:57:44.006796Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a021-21",
+          "client_wall_s": 131.568,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:59:55.575298Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T17:57:44.007448Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a022-22",
+          "client_wall_s": 68.445,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T18:01:04.027236Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T17:59:55.582086Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1C2-r0-a023-23",
+          "client_wall_s": 131.759,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T18:02:07.342012Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T17:59:55.582995Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        }
+      ],
+      "derived": {
+        "attempts": 24,
+        "failed_attempts": 0,
+        "max_client_wall_s": 131.882,
+        "mean_client_wall_s": 100.042,
+        "median_client_wall_s": 100.024,
+        "min_client_wall_s": 68.174,
+        "p95_client_wall_s": 131.845,
+        "valid_attempts": 24,
+        "video_seconds": 189.0,
+        "video_seconds_per_gpu_hour": 53.8,
+        "video_seconds_per_node_hour": 430.5,
+        "window_seconds": 1580.65546,
+        "yield_technical_validity": 1.0
+      },
+      "layout": "1 service x 8 GPUs, concurrency 2",
+      "window": {
+        "concurrency": 2,
+        "node_gpu_count": 8,
+        "replicas": [
+          "r0"
+        ],
+        "topology": "T1C2",
+        "window_end_utc": "2026-08-11T18:02:07.348163Z",
+        "window_start_utc": "2026-08-11T17:35:46.692703Z"
+      }
+    },
+    "T1DRIFT": {
+      "attempts": [
+        {
+          "attempt_id": "T1DRIFT-r0-a000-00",
+          "client_wall_s": 69.538,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T14:42:17.027562Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7947871,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "4c8697f484be35755e652ef9c3420e006d4e4352fa56d505c93bc828189954c4",
+          "started_utc": "2026-08-11T14:41:07.489647Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1DRIFT-r0-a001-01",
+          "client_wall_s": 67.726,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T14:43:24.760506Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6991933,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "8966b7134c9753f339d0c33b98e3eba9a20365088f0872cd233a40f01156efa5",
+          "started_utc": "2026-08-11T14:42:17.034316Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1DRIFT-r0-a002-02",
+          "client_wall_s": 67.815,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T14:44:32.581842Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7802222,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "cd95bd56d0891c18fab133d1a03ab9374a76e0056921d2756738696f449bd40d",
+          "started_utc": "2026-08-11T14:43:24.766429Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        }
+      ],
+      "derived": {
+        "attempts": 3,
+        "failed_attempts": 0,
+        "max_client_wall_s": 69.538,
+        "mean_client_wall_s": 68.36,
+        "median_client_wall_s": 67.815,
+        "min_client_wall_s": 67.726,
+        "p95_client_wall_s": 69.538,
+        "valid_attempts": 3,
+        "video_seconds": 23.625,
+        "video_seconds_per_gpu_hour": 51.8,
+        "video_seconds_per_node_hour": 414.7,
+        "window_seconds": 205.098526,
+        "yield_technical_validity": 1.0
+      },
+      "layout": "1 service x 8 GPUs, post-sequence drift check",
+      "window": {
+        "concurrency": 1,
+        "node_gpu_count": 8,
+        "replicas": [
+          "r0"
+        ],
+        "topology": "T1DRIFT",
+        "window_end_utc": "2026-08-11T14:44:32.587773Z",
+        "window_start_utc": "2026-08-11T14:41:07.489247Z"
+      }
+    },
+    "T1_1x8": {
+      "attempts": [
+        {
+          "attempt_id": "T1-r0-a000-00",
+          "client_wall_s": 67.703,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:16:28.308724Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:15:20.605824Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a001-01",
+          "client_wall_s": 67.75,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:17:36.065260Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:16:28.315522Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a002-02",
+          "client_wall_s": 67.808,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:18:43.879267Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:17:36.070730Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a003-03",
+          "client_wall_s": 67.918,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:19:51.803737Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:18:43.885856Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a004-04",
+          "client_wall_s": 67.635,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:20:59.445697Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:19:51.810433Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a005-05",
+          "client_wall_s": 67.845,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:22:07.296607Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:20:59.451240Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a006-06",
+          "client_wall_s": 67.793,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:23:15.095687Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:22:07.303132Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a007-07",
+          "client_wall_s": 67.715,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:24:22.817974Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:23:15.102589Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a008-08",
+          "client_wall_s": 67.725,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:25:30.548530Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:24:22.823489Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a009-09",
+          "client_wall_s": 67.853,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:26:38.408755Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:25:30.555392Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a010-10",
+          "client_wall_s": 67.778,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:27:46.193746Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:26:38.415386Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a011-11",
+          "client_wall_s": 67.949,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:28:54.148439Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:27:46.199245Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a012-12",
+          "client_wall_s": 67.811,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:30:01.965814Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:28:54.155277Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a013-13",
+          "client_wall_s": 67.783,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:31:09.755397Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:30:01.972353Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a014-14",
+          "client_wall_s": 67.887,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:32:17.647822Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:31:09.760947Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a015-15",
+          "client_wall_s": 67.891,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:33:25.545692Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:32:17.654456Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a016-16",
+          "client_wall_s": 68.344,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:34:33.896592Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:33:25.552466Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a017-17",
+          "client_wall_s": 68.11,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:35:42.012055Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:34:33.902169Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a018-18",
+          "client_wall_s": 68.002,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:36:50.020343Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:35:42.018486Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a019-19",
+          "client_wall_s": 68.258,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:37:58.285258Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:36:50.026985Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a020-20",
+          "client_wall_s": 68.149,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:39:06.439803Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:37:58.290614Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a021-21",
+          "client_wall_s": 68.064,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:40:14.509966Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7913147,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "8992205f81d5bc6049fb93c67b7a9768efbdda7dda378acf996d542c9ee2093d",
+          "started_utc": "2026-08-11T05:39:06.446274Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a022-22",
+          "client_wall_s": 68.266,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:41:22.782734Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6707324,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "7c22894294fd6e18a23b7182dfd3d5aa972f8c35312a1148325b1229aba34d83",
+          "started_utc": "2026-08-11T05:40:14.516326Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T1-r0-a023-23",
+          "client_wall_s": 68.047,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T05:42:30.834975Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7765214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "5032f6138526eb2069254536f9d5d0fb4fa996dd6fa3abdb335a9c529244bf5c",
+          "started_utc": "2026-08-11T05:41:22.788065Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        }
+      ],
+      "derived": {
+        "attempts": 24,
+        "failed_attempts": 0,
+        "max_client_wall_s": 68.344,
+        "mean_client_wall_s": 67.92,
+        "median_client_wall_s": 67.87,
+        "min_client_wall_s": 67.635,
+        "p95_client_wall_s": 68.266,
+        "valid_attempts": 24,
+        "video_seconds": 189.0,
+        "video_seconds_per_gpu_hour": 52.2,
+        "video_seconds_per_node_hour": 417.4,
+        "window_seconds": 1630.235767,
+        "yield_technical_validity": 1.0
+      },
+      "layout": "1 service x 8 GPUs, CFG-2 x Ulysses-4 x HSDP-8",
+      "window": {
+        "concurrency": 1,
+        "node_gpu_count": 8,
+        "replicas": [
+          "r0"
+        ],
+        "topology": "T1",
+        "window_end_utc": "2026-08-11T05:42:30.841189Z",
+        "window_start_utc": "2026-08-11T05:15:20.605422Z"
+      }
+    },
+    "T2_2x4": {
+      "attempts": [
+        {
+          "attempt_id": "T2-r1-a000-00",
+          "client_wall_s": 119.981,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:00:24.452007Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7950905,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "06966b445c25a042d730d7e51828417beeef908167bde524f3da720d5daebd20",
+          "started_utc": "2026-08-11T05:58:24.470490Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a000-01",
+          "client_wall_s": 120.083,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:00:24.553151Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7948730,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "2393e74687d61c7f413864cb3fc89dba31b3a7a196f2ac8713323016f23e5234",
+          "started_utc": "2026-08-11T05:58:24.469764Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a001-02",
+          "client_wall_s": 120.082,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:02:24.642700Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7031214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "ed4079687304bd0d78ca920fa5e8105d3387896b04403206eaa348762fec6bfb",
+          "started_utc": "2026-08-11T06:00:24.560500Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a001-03",
+          "client_wall_s": 120.245,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:02:24.804472Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6842035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "d7d073f01bb9666fc997418da4d742fb4088e1331683fa84ed51b5e5824f424a",
+          "started_utc": "2026-08-11T06:00:24.559739Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a002-04",
+          "client_wall_s": 120.093,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:04:24.903064Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7821774,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "afd6abdd7dc1cb5b39ab0332f0623f2b27aeac83fc7536185b587bd5b89aa5dd",
+          "started_utc": "2026-08-11T06:02:24.810264Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a002-05",
+          "client_wall_s": 120.293,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:04:25.102950Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7813270,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "6fefacdf5262eb970fdd3796739c765eefa1aa203c5ee8d0edee3eaee0369df4",
+          "started_utc": "2026-08-11T06:02:24.809455Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a003-06",
+          "client_wall_s": 120.08,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:06:25.189367Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7948730,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "2393e74687d61c7f413864cb3fc89dba31b3a7a196f2ac8713323016f23e5234",
+          "started_utc": "2026-08-11T06:04:25.109338Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a003-07",
+          "client_wall_s": 120.338,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:06:25.447904Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7950905,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "06966b445c25a042d730d7e51828417beeef908167bde524f3da720d5daebd20",
+          "started_utc": "2026-08-11T06:04:25.110087Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a004-08",
+          "client_wall_s": 120.233,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:08:25.687472Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7031214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "ed4079687304bd0d78ca920fa5e8105d3387896b04403206eaa348762fec6bfb",
+          "started_utc": "2026-08-11T06:06:25.454511Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a004-09",
+          "client_wall_s": 120.241,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:08:25.694463Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6842035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "d7d073f01bb9666fc997418da4d742fb4088e1331683fa84ed51b5e5824f424a",
+          "started_utc": "2026-08-11T06:06:25.453857Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a005-10",
+          "client_wall_s": 120.089,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:10:25.789478Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7821774,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "afd6abdd7dc1cb5b39ab0332f0623f2b27aeac83fc7536185b587bd5b89aa5dd",
+          "started_utc": "2026-08-11T06:08:25.700151Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a005-11",
+          "client_wall_s": 120.265,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:10:25.964211Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7813270,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "6fefacdf5262eb970fdd3796739c765eefa1aa203c5ee8d0edee3eaee0369df4",
+          "started_utc": "2026-08-11T06:08:25.699610Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a006-12",
+          "client_wall_s": 120.124,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:12:26.094554Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7950905,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "06966b445c25a042d730d7e51828417beeef908167bde524f3da720d5daebd20",
+          "started_utc": "2026-08-11T06:10:25.970904Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a006-13",
+          "client_wall_s": 120.235,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:12:26.205183Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7948730,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "2393e74687d61c7f413864cb3fc89dba31b3a7a196f2ac8713323016f23e5234",
+          "started_utc": "2026-08-11T06:10:25.970357Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a007-14",
+          "client_wall_s": 119.958,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:14:26.170694Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7031214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "ed4079687304bd0d78ca920fa5e8105d3387896b04403206eaa348762fec6bfb",
+          "started_utc": "2026-08-11T06:12:26.212544Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a007-15",
+          "client_wall_s": 120.05,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:14:26.261682Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6842035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "d7d073f01bb9666fc997418da4d742fb4088e1331683fa84ed51b5e5824f424a",
+          "started_utc": "2026-08-11T06:12:26.211806Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a008-16",
+          "client_wall_s": 119.996,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:16:26.263996Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7821774,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "afd6abdd7dc1cb5b39ab0332f0623f2b27aeac83fc7536185b587bd5b89aa5dd",
+          "started_utc": "2026-08-11T06:14:26.267983Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a008-17",
+          "client_wall_s": 120.297,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:16:26.564108Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7813270,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "6fefacdf5262eb970fdd3796739c765eefa1aa203c5ee8d0edee3eaee0369df4",
+          "started_utc": "2026-08-11T06:14:26.267092Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a009-18",
+          "client_wall_s": 119.94,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:18:26.511157Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7950905,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "06966b445c25a042d730d7e51828417beeef908167bde524f3da720d5daebd20",
+          "started_utc": "2026-08-11T06:16:26.571271Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a009-19",
+          "client_wall_s": 120.197,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:18:26.767421Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7948730,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "2393e74687d61c7f413864cb3fc89dba31b3a7a196f2ac8713323016f23e5234",
+          "started_utc": "2026-08-11T06:16:26.570594Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a010-20",
+          "client_wall_s": 119.995,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:20:26.769177Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7031214,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "ed4079687304bd0d78ca920fa5e8105d3387896b04403206eaa348762fec6bfb",
+          "started_utc": "2026-08-11T06:18:26.774493Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a010-21",
+          "client_wall_s": 120.345,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:20:27.118707Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6842035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "d7d073f01bb9666fc997418da4d742fb4088e1331683fa84ed51b5e5824f424a",
+          "started_utc": "2026-08-11T06:18:26.773618Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r1-a011-22",
+          "client_wall_s": 119.799,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:22:26.923687Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7821774,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "afd6abdd7dc1cb5b39ab0332f0623f2b27aeac83fc7536185b587bd5b89aa5dd",
+          "started_utc": "2026-08-11T06:20:27.124577Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T2-r0-a011-23",
+          "client_wall_s": 120.232,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:22:27.355451Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7813270,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "6fefacdf5262eb970fdd3796739c765eefa1aa203c5ee8d0edee3eaee0369df4",
+          "started_utc": "2026-08-11T06:20:27.123801Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        }
+      ],
+      "derived": {
+        "attempts": 24,
+        "failed_attempts": 0,
+        "max_client_wall_s": 120.345,
+        "mean_client_wall_s": 120.133,
+        "median_client_wall_s": 120.108,
+        "min_client_wall_s": 119.799,
+        "p95_client_wall_s": 120.338,
+        "valid_attempts": 24,
+        "video_seconds": 189.0,
+        "video_seconds_per_gpu_hour": 58.9,
+        "video_seconds_per_node_hour": 471.6,
+        "window_seconds": 1442.891951,
+        "yield_technical_validity": 1.0
+      },
+      "layout": "2 services x 4 GPUs, TP-4",
+      "window": {
+        "concurrency": 1,
+        "node_gpu_count": 8,
+        "replicas": [
+          "r0",
+          "r1"
+        ],
+        "topology": "T2",
+        "window_end_utc": "2026-08-11T06:22:27.361303Z",
+        "window_start_utc": "2026-08-11T05:58:24.469352Z"
+      }
+    },
+    "T3_4x2": {
+      "attempts": [
+        {
+          "attempt_id": "T3-r0-a000-00",
+          "client_wall_s": 209.396,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:45:06.049564Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7899540,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "2f4025034ceaa723ddf07efd08f1f71fbdac8369ae728a706d1fcccd537d4f2d",
+          "started_utc": "2026-08-11T06:41:36.653380Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r3-a000-01",
+          "client_wall_s": 210.278,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:45:06.933953Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7946756,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 17,
+          "sha256": "486cdbd38509a36556b559d7bb6a7585eaf654eb63a39d5b1bbabb5182d74311",
+          "started_utc": "2026-08-11T06:41:36.655617Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r2-a000-02",
+          "client_wall_s": 210.702,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:45:07.356684Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7994957,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 17,
+          "sha256": "983909fe7f60b732fcbf2f09d304a4bd60cd9d35cdd61e09bbf0e360f1130b7b",
+          "started_utc": "2026-08-11T06:41:36.654875Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r1-a000-03",
+          "client_wall_s": 210.743,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:45:07.397057Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7899540,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "2f4025034ceaa723ddf07efd08f1f71fbdac8369ae728a706d1fcccd537d4f2d",
+          "started_utc": "2026-08-11T06:41:36.654240Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r0-a001-04",
+          "client_wall_s": 209.76,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:48:37.163103Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6448959,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "e42cf885d194d023d3428608bf0f1523716960f339afe25851f879ee5dce27b0",
+          "started_utc": "2026-08-11T06:45:07.403450Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r3-a001-05",
+          "client_wall_s": 210.769,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:48:38.174334Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6638467,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 23,
+          "sha256": "3446fa4b392352acc75f373483bb66a81abf052821fbc2a0ce2134e3d03aa635",
+          "started_utc": "2026-08-11T06:45:07.405215Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r1-a001-06",
+          "client_wall_s": 210.976,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:48:38.379704Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6448959,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "e42cf885d194d023d3428608bf0f1523716960f339afe25851f879ee5dce27b0",
+          "started_utc": "2026-08-11T06:45:07.404091Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r2-a001-07",
+          "client_wall_s": 211.285,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:48:38.689495Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6422700,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 23,
+          "sha256": "7d8088d4ace9551bc889dfc8869f0d9d1811f35588150655dd2ce59af2f09377",
+          "started_utc": "2026-08-11T06:45:07.404640Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r0-a002-08",
+          "client_wall_s": 209.63,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:52:08.323984Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7869298,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "366b8fe35b4d531d5fcf58d870e75d229ed5da87b997c64aac8f13c4dd002c31",
+          "started_utc": "2026-08-11T06:48:38.694265Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r3-a002-09",
+          "client_wall_s": 210.597,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:52:09.292945Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7868711,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 41,
+          "sha256": "edf1b7e2fb769dfde611ddebe10970c3d24c36ee4ef950423d98d34e56fe9c0f",
+          "started_utc": "2026-08-11T06:48:38.695943Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r1-a002-10",
+          "client_wall_s": 210.661,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:52:09.355950Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7869298,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "366b8fe35b4d531d5fcf58d870e75d229ed5da87b997c64aac8f13c4dd002c31",
+          "started_utc": "2026-08-11T06:48:38.694950Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r2-a002-11",
+          "client_wall_s": 211.05,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:52:09.745579Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7871273,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 41,
+          "sha256": "2b3cdaa54257b6d331fa66384ad3071c7871b74c773a05cae38c016e3879fe7a",
+          "started_utc": "2026-08-11T06:48:38.695580Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r0-a003-12",
+          "client_wall_s": 210.06,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:55:39.812028Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7899540,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "2f4025034ceaa723ddf07efd08f1f71fbdac8369ae728a706d1fcccd537d4f2d",
+          "started_utc": "2026-08-11T06:52:09.751935Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r1-a003-13",
+          "client_wall_s": 210.656,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:55:40.408699Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7899540,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "2f4025034ceaa723ddf07efd08f1f71fbdac8369ae728a706d1fcccd537d4f2d",
+          "started_utc": "2026-08-11T06:52:09.752381Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r3-a003-14",
+          "client_wall_s": 210.877,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:55:40.631459Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7946756,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 17,
+          "sha256": "486cdbd38509a36556b559d7bb6a7585eaf654eb63a39d5b1bbabb5182d74311",
+          "started_utc": "2026-08-11T06:52:09.754090Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r2-a003-15",
+          "client_wall_s": 211.041,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:55:40.794241Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7994957,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 17,
+          "sha256": "983909fe7f60b732fcbf2f09d304a4bd60cd9d35cdd61e09bbf0e360f1130b7b",
+          "started_utc": "2026-08-11T06:52:09.753451Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r0-a004-16",
+          "client_wall_s": 210.195,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:59:10.995478Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6448959,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "e42cf885d194d023d3428608bf0f1523716960f339afe25851f879ee5dce27b0",
+          "started_utc": "2026-08-11T06:55:40.800511Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r2-a004-17",
+          "client_wall_s": 210.668,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:59:11.470048Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6422700,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 23,
+          "sha256": "7d8088d4ace9551bc889dfc8869f0d9d1811f35588150655dd2ce59af2f09377",
+          "started_utc": "2026-08-11T06:55:40.801781Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r3-a004-18",
+          "client_wall_s": 210.836,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:59:11.638563Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6638467,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 23,
+          "sha256": "3446fa4b392352acc75f373483bb66a81abf052821fbc2a0ce2134e3d03aa635",
+          "started_utc": "2026-08-11T06:55:40.802375Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r1-a004-19",
+          "client_wall_s": 211.066,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T06:59:11.867349Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6448959,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "e42cf885d194d023d3428608bf0f1523716960f339afe25851f879ee5dce27b0",
+          "started_utc": "2026-08-11T06:55:40.801205Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r0-a005-20",
+          "client_wall_s": 209.754,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:02:41.626009Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7869298,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "366b8fe35b4d531d5fcf58d870e75d229ed5da87b997c64aac8f13c4dd002c31",
+          "started_utc": "2026-08-11T06:59:11.872301Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r2-a005-21",
+          "client_wall_s": 210.767,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:02:42.640360Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7871273,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 41,
+          "sha256": "2b3cdaa54257b6d331fa66384ad3071c7871b74c773a05cae38c016e3879fe7a",
+          "started_utc": "2026-08-11T06:59:11.873328Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r3-a005-22",
+          "client_wall_s": 210.781,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:02:42.654975Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7868711,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 41,
+          "sha256": "edf1b7e2fb769dfde611ddebe10970c3d24c36ee4ef950423d98d34e56fe9c0f",
+          "started_utc": "2026-08-11T06:59:11.873907Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T3-r1-a005-23",
+          "client_wall_s": 211.117,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:02:42.989894Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7869298,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "366b8fe35b4d531d5fcf58d870e75d229ed5da87b997c64aac8f13c4dd002c31",
+          "started_utc": "2026-08-11T06:59:11.872947Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        }
+      ],
+      "derived": {
+        "attempts": 24,
+        "failed_attempts": 0,
+        "max_client_wall_s": 211.285,
+        "mean_client_wall_s": 210.569,
+        "median_client_wall_s": 210.722,
+        "min_client_wall_s": 209.396,
+        "p95_client_wall_s": 211.117,
+        "valid_attempts": 24,
+        "video_seconds": 189.0,
+        "video_seconds_per_gpu_hour": 67.2,
+        "video_seconds_per_node_hour": 537.3,
+        "window_seconds": 1266.342726,
+        "yield_technical_validity": 1.0
+      },
+      "layout": "4 services x 2 GPUs, TP-2",
+      "window": {
+        "concurrency": 1,
+        "node_gpu_count": 8,
+        "replicas": [
+          "r0",
+          "r1",
+          "r2",
+          "r3"
+        ],
+        "topology": "T3",
+        "window_end_utc": "2026-08-11T07:02:42.995710Z",
+        "window_start_utc": "2026-08-11T06:41:36.652984Z"
+      }
+    },
+    "T4C2": {
+      "attempts": [
+        {
+          "attempt_id": "T4C2-r1-a000-00",
+          "client_wall_s": 371.644,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:14:56.909727Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T17:08:45.265255Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r5-a000-01",
+          "client_wall_s": 372.407,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:14:57.677506Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7909739,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r5",
+          "seed": 17,
+          "sha256": "b3b0b1e73517554354322b99c5c5ab347d5edb0af6bcef9bc8206fea572bc61a",
+          "started_utc": "2026-08-11T17:08:45.270867Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r7-a000-02",
+          "client_wall_s": 373.099,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:14:58.371659Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r7",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T17:08:45.272970Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r3-a000-03",
+          "client_wall_s": 375.763,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:15:01.031464Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T17:08:45.268273Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r0-a000-04",
+          "client_wall_s": 376.977,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:15:02.240507Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T17:08:45.263650Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r2-a000-05",
+          "client_wall_s": 378.27,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:15:03.537026Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T17:08:45.267148Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r6-a000-06",
+          "client_wall_s": 378.293,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:15:03.564745Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r6",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T17:08:45.271977Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r4-a000-07",
+          "client_wall_s": 379.474,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:15:04.743761Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7942982,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r4",
+          "seed": 17,
+          "sha256": "b7f8f7b74ddeda8666b67fa03004417bbe2df23bfdb6cbc3aa625740f58e3d5b",
+          "started_utc": "2026-08-11T17:08:45.269495Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r1-a001-08",
+          "client_wall_s": 738.359,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:03.625123Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T17:08:45.266105Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r5-a001-09",
+          "client_wall_s": 739.317,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:04.588014Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7132162,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r5",
+          "seed": 23,
+          "sha256": "b934bf9f3818692a091961016f5f27b980c503c24e3e5b7485c917f860a6d248",
+          "started_utc": "2026-08-11T17:08:45.271436Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r7-a001-10",
+          "client_wall_s": 740.56,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:05.833291Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r7",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T17:08:45.273528Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r3-a001-11",
+          "client_wall_s": 745.789,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:11.057691Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T17:08:45.268940Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r0-a001-12",
+          "client_wall_s": 748.891,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:14.155483Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T17:08:45.264535Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r2-a001-13",
+          "client_wall_s": 751.573,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:16.840372Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T17:08:45.267663Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r6-a001-14",
+          "client_wall_s": 751.638,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:16.910075Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r6",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T17:08:45.272488Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r4-a001-15",
+          "client_wall_s": 753.862,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:21:19.133000Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6995110,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r4",
+          "seed": 23,
+          "sha256": "614999add5c0ff3ecf710cb1880beb46d329173620b8daa8acdfe287f4a5c91b",
+          "started_utc": "2026-08-11T17:08:45.270497Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r1-a002-16",
+          "client_wall_s": 371.503,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:30.642449Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T17:21:19.139896Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r5-a002-17",
+          "client_wall_s": 372.668,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:31.810927Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7810185,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r5",
+          "seed": 41,
+          "sha256": "df875f4d3d1887d5c98607be0c47498b8e3951d94a2cdf8f64e5052b04094bbf",
+          "started_utc": "2026-08-11T17:21:19.142750Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r7-a002-18",
+          "client_wall_s": 373.546,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:32.689718Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r7",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T17:21:19.143996Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r3-a002-19",
+          "client_wall_s": 375.291,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:34.431610Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T17:21:19.141036Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r0-a002-20",
+          "client_wall_s": 376.998,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:36.136832Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T17:21:19.139100Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r6-a002-21",
+          "client_wall_s": 377.743,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:36.886030Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r6",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T17:21:19.143265Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r2-a002-22",
+          "client_wall_s": 377.986,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:37.126418Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T17:21:19.140385Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4C2-r4-a002-23",
+          "client_wall_s": 379.408,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T17:27:38.549752Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7808682,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r4",
+          "seed": 41,
+          "sha256": "46e48f7723033368b34ccc2bbaaf23740dda64828874c5103fdec4167761a895",
+          "started_utc": "2026-08-11T17:21:19.141841Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        }
+      ],
+      "derived": {
+        "attempts": 24,
+        "failed_attempts": 0,
+        "max_client_wall_s": 753.862,
+        "mean_client_wall_s": 499.211,
+        "median_client_wall_s": 378.128,
+        "min_client_wall_s": 371.503,
+        "p95_client_wall_s": 751.638,
+        "valid_attempts": 24,
+        "video_seconds": 189.0,
+        "video_seconds_per_gpu_hour": 75.0,
+        "video_seconds_per_node_hour": 600.4,
+        "window_seconds": 1133.293003,
+        "yield_technical_validity": 1.0
+      },
+      "layout": "8 services x 1 GPU, concurrency 2",
+      "window": {
+        "concurrency": 2,
+        "node_gpu_count": 8,
+        "replicas": [
+          "r0",
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5",
+          "r6",
+          "r7"
+        ],
+        "topology": "T4C2",
+        "window_end_utc": "2026-08-11T17:27:38.556180Z",
+        "window_start_utc": "2026-08-11T17:08:45.263177Z"
+      }
+    },
+    "T4_8x1": {
+      "attempts": [
+        {
+          "attempt_id": "T4-r1-a000-00",
+          "client_wall_s": 371.805,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:19.738362Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T07:39:07.933438Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r5-a000-01",
+          "client_wall_s": 372.306,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:20.242048Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r5",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T07:39:07.936172Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r7-a000-02",
+          "client_wall_s": 372.731,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:20.668373Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r7",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T07:39:07.937435Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r3-a000-03",
+          "client_wall_s": 376.029,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:23.963753Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T07:39:07.934588Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r0-a000-04",
+          "client_wall_s": 376.579,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:24.511460Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T07:39:07.932361Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r2-a000-05",
+          "client_wall_s": 377.51,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:25.444394Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T07:39:07.933889Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r6-a000-06",
+          "client_wall_s": 378.89,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:26.826523Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7954397,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r6",
+          "seed": 17,
+          "sha256": "be21321be64d0158e78bb78753ab54927fa39f3aeb4637a2f5ae7a4d8d5ffe35",
+          "started_utc": "2026-08-11T07:39:07.936748Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r4-a000-07",
+          "client_wall_s": 379.192,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:45:27.126975Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7979697,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r4",
+          "seed": 17,
+          "sha256": "c8b74a0d9974d0bad1699eb3c0c38330bdb50d85d7c2ce7f2d4fa76112c6b056",
+          "started_utc": "2026-08-11T07:39:07.935303Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r1-a001-08",
+          "client_wall_s": 371.919,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:39.052524Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T07:45:27.133673Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r5-a001-09",
+          "client_wall_s": 372.403,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:39.539651Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r5",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T07:45:27.136587Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r7-a001-10",
+          "client_wall_s": 373.065,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:40.202526Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r7",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T07:45:27.137373Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r3-a001-11",
+          "client_wall_s": 375.707,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:42.841827Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T07:45:27.134959Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r0-a001-12",
+          "client_wall_s": 376.62,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:43.753081Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T07:45:27.133123Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r2-a001-13",
+          "client_wall_s": 377.617,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:44.751528Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T07:45:27.134028Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r6-a001-14",
+          "client_wall_s": 378.871,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:46.008226Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 6943035,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r6",
+          "seed": 23,
+          "sha256": "0aa2c2ab94894d5a228a996f70a795c1b381366b05635ccab6bd5108d61a0384",
+          "started_utc": "2026-08-11T07:45:27.136904Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r4-a001-15",
+          "client_wall_s": 379.845,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:51:46.980648Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7066786,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r4",
+          "seed": 23,
+          "sha256": "dbf0d0ee2b78900881a6df21726dee845927f421903699e1b3c0b5cfd11e8d94",
+          "started_utc": "2026-08-11T07:45:27.135963Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r1-a002-16",
+          "client_wall_s": 372.022,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:57:59.008901Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r1",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T07:51:46.987197Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r5-a002-17",
+          "client_wall_s": 372.289,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:57:59.278637Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r5",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T07:51:46.989841Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r7-a002-18",
+          "client_wall_s": 373.06,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:58:00.052180Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r7",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T07:51:46.991772Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r3-a002-19",
+          "client_wall_s": 375.623,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:58:02.611420Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r3",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T07:51:46.988326Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r0-a002-20",
+          "client_wall_s": 376.623,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:58:03.609501Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r0",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T07:51:46.986643Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r2-a002-21",
+          "client_wall_s": 378.174,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:58:05.162418Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r2",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T07:51:46.988011Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r6-a002-22",
+          "client_wall_s": 378.731,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:58:05.721981Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7805464,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r6",
+          "seed": 41,
+          "sha256": "1fa2195f8383785a3174b1745cca5fcb427aeb1781f95297c9ff6edff203972c",
+          "started_utc": "2026-08-11T07:51:46.990896Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        },
+        {
+          "attempt_id": "T4-r4-a002-23",
+          "client_wall_s": 379.399,
+          "failure_reason": null,
+          "finished_utc": "2026-08-11T07:58:06.388378Z",
+          "http_status": 200,
+          "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+          "output_bytes": 7831753,
+          "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+          "replica": "r4",
+          "seed": 41,
+          "sha256": "6c02ad765e25ad76a2609dbb7e933a00d3bb4f9a6c05a13a605b4e84b6090e48",
+          "started_utc": "2026-08-11T07:51:46.989263Z",
+          "technical_valid": true,
+          "video_validation": {
+            "basis": "revalidated with reproduce/validate-video.py; source MP4 SHA-256 matched",
+            "valid": true
+          }
+        }
+      ],
+      "derived": {
+        "attempts": 24,
+        "failed_attempts": 0,
+        "max_client_wall_s": 379.845,
+        "mean_client_wall_s": 375.709,
+        "median_client_wall_s": 376.304,
+        "min_client_wall_s": 371.805,
+        "p95_client_wall_s": 379.399,
+        "valid_attempts": 24,
+        "video_seconds": 189.0,
+        "video_seconds_per_gpu_hour": 74.7,
+        "video_seconds_per_node_hour": 597.6,
+        "window_seconds": 1138.46223,
+        "yield_technical_validity": 1.0
+      },
+      "layout": "8 services x 1 GPU, TP-1",
+      "window": {
+        "concurrency": 1,
+        "node_gpu_count": 8,
+        "replicas": [
+          "r0",
+          "r1",
+          "r2",
+          "r3",
+          "r4",
+          "r5",
+          "r6",
+          "r7"
+        ],
+        "topology": "T4",
+        "window_end_utc": "2026-08-11T07:58:06.394133Z",
+        "window_start_utc": "2026-08-11T07:39:07.931903Z"
+      }
+    }
+  },
+  "comparison_basis": "b200_topology",
+  "comparisons": {
+    "concurrency_two": {
+      "T1_median_latency_delta_pct": 47.4,
+      "T1_throughput_delta_pct": 3.1,
+      "T4_median_latency_delta_pct": 0.5,
+      "T4_throughput_delta_pct": 0.5
+    },
+    "cost_per_video_second_reduction_vs_T1_pct": {
+      "T2_2x4": 11.5,
+      "T3_4x2": 22.3,
+      "T4_8x1": 30.2
+    },
+    "drift_mean_delta_vs_T1_pct": 0.6,
+    "latency_ratio_vs_T1": {
+      "T2_2x4": 1.77,
+      "T3_4x2": 3.1,
+      "T4_8x1": 5.54
+    },
+    "throughput_gain_vs_T1_pct": {
+      "T2_2x4": 13.0,
+      "T3_4x2": 28.7,
+      "T4_8x1": 43.2
+    }
+  },
+  "prompt_hashes": {
+    "anchor": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+    "negative": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd"
+  },
+  "scope": "One eight-GPU B200 node. T1, T2, T3, and T4 were run sequentially, with replicas inside each topology active concurrently. Fixed 1280x720, 189-frame, 24 fps, 35-step workload.",
+  "technical_validity_evidence": "All 147 embedded production attempts matched source MP4 SHA-256 values that passed reproduce/validate-video.py. The generated clips are not distributed."
+}
