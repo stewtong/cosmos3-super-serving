@@ -45,7 +45,7 @@ public records contain hashes of those files, not their text.
 ## NVIDIA reference figures
 
 Any NVIDIA comparison figures are attributed to
-[`NVIDIA/cosmos` inference_benchmarks.md](https://github.com/NVIDIA/cosmos/blob/main/inference_benchmarks.md).
+[`NVIDIA/cosmos` inference_benchmarks.md](https://github.com/NVIDIA/cosmos/blob/main/inference_benchmarks.md#cosmos3-super-generator).
 They remain NVIDIA material and are not licensed by this repository.
 
 ## Measurement provenance

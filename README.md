@@ -58,6 +58,17 @@ about 7.875 seconds. Without the gate a throughput number includes failures,
 and on this model the failure modes are quiet: a 200 with a truncated file, or
 a decodable file at the wrong shape.
 
+### Relation to NVIDIA's benchmark grid
+
+NVIDIA's [Cosmos3-Super Generator benchmarks](https://github.com/NVIDIA/cosmos/blob/main/inference_benchmarks.md#cosmos3-super-generator)
+provide the reference grid for BF16, batch-size-one generation across one, four,
+and eight GPUs. To make our topology cells comparable with one another, we fixed
+35 denoising steps, guidance 6.0, flow shift 10.0, maximum sequence length 4096,
+prompt hashes, the 17/23/41 seed cycle, guardrails off, and concurrency one per
+service. We applied one video-validity gate to every attempt. The concurrency-two
+confirmations are labeled separately. The runtime and driver versions differ,
+so the latency comparison is contextual.
+
 ## Requirements
 
 - One eight-GPU H200 (141 GB) or B200 (192 GB) node running Linux with the

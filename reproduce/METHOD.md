@@ -28,6 +28,17 @@ The request uses multipart form data with the fields above plus
 false, "guardrails": <posture>}` and the seed. `benchmark.py --dry-run` prints
 the fixed fields, seed cycle, and timeout without reading prompt files.
 
+## NVIDIA reference grid
+
+NVIDIA's [Cosmos3-Super Generator benchmarks](https://github.com/NVIDIA/cosmos/blob/main/inference_benchmarks.md#cosmos3-super-generator)
+document BF16, batch size one, matched prompts, seeds, and sampler settings, 189
+frames at 24 fps, tensor parallelism for four- and eight-GPU configurations, and
+engine-specific timing boundaries. The controls above make this repository's
+topology cells comparable with one another. Concurrency-two confirmations are
+labeled separately, and the same validity gate applies to every attempt. The
+runtime and driver versions differ from NVIDIA's runs, so the published latency
+grid is a contextual reference.
+
 ## Servers
 
 Every service runs the pinned container `vllm/vllm-omni:cosmos3@
