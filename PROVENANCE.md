@@ -56,7 +56,9 @@ The B200 topology cells used a multi-endpoint runner against the same sync
 endpoint. `results/b200-topology.json` contains 147 sanitized production
 attempts, exact windows, and derived values, and
 `results/b200-single-node-20260831.json` contains 240 more from the later
-single-node consolidation on one B200 node. The corresponding MP4 hashes were
+single-node consolidation on one B200 node, and
+`results/h200-single-node-20260831.json` contains 168 from the matching H200
+ladder measured under the same driver, container digest, and workload. The corresponding MP4 hashes were
 matched to source clips that passed `reproduce/validate-video.py`. Prompt text,
 generated clips, logs, local paths, host identifiers, network addresses, tenant
 identifiers, and credentials are not distributed.

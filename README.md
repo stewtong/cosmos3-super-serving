@@ -3,8 +3,9 @@
 Reference implementation and measurement record for serving the NVIDIA
 `nvidia/Cosmos3-Super` world foundation model generator tower (text to video) on
 a **single eight-GPU H200 or B200 node** through the vLLM-Omni container. The
-repository provides pinned launch scripts, a validated benchmark, a rederivable
-B200 topology result, and supplemental H200 and B200 serving observations.
+repository provides pinned launch scripts, a validated benchmark, rederivable
+B200 and H200 topology results measured under one software stack, and
+supplemental H200 and B200 serving observations.
 Everything was measured in August 2026 on Nebius eight-GPU nodes. Measurements
 are in `results/`, and the included derivation code is in `reproduce/`.
 
@@ -23,8 +24,8 @@ The measurements support these operating decisions:
 2. **B200 topology trades latency for throughput.** One node can run 1, 2, 4,
    or 8 independent services. The four arrangements were measured as sequential
    cells on one B200 node, with all replicas inside each cell active concurrently.
-   Eight single-GPU services produce 43% more finished video per node-hour than
-   one eight-GPU service, at 5.5 times the per-clip latency.
+   Eight single-GPU services produce 42.5% more finished video per node-hour
+   than one eight-GPU service, at 5.5 times the per-clip latency.
    Pick by objective (see the topology table). Use `serve-b200-replicas.sh`.
 3. **Concurrency is queueing, replica count is throughput.** At a fixed
    topology, raising in-flight requests per service moves node throughput by a
@@ -66,8 +67,20 @@ and eight GPUs. To make our topology cells comparable with one another, we fixed
 35 denoising steps, guidance 6.0, flow shift 10.0, maximum sequence length 4096,
 prompt hashes, the 17/23/41 seed cycle, guardrails off, and concurrency one per
 service. We applied one video-validity gate to every attempt. The concurrency-two
-confirmations are labeled separately. The runtime and driver versions differ,
-so the latency comparison is contextual.
+confirmations are labeled separately.
+
+These numbers and NVIDIA's grid were produced on different software. NVIDIA's
+published figures come from an internal vLLM-Omni build that is not the public
+container, at a different runtime version and on a different driver branch. The
+numbers here come from the public `vllm/vllm-omni:cosmos3` image, pinned by
+digest, which reports vLLM 0.25.0. Every other workload control we can compare
+is aligned: model and revision, task, precision, resolution, frame count, frame
+rate, denoising steps, guidance, flow shift, and guardrail posture. That leaves
+the runtime version and the driver branch as the residual variables between the
+two sets of figures. Neither has been measured as the cause of the difference,
+and this repository does not claim it has. What the results here describe is the
+public serving stack as an operator can obtain it, which is the stack to plan
+against unless you have access to NVIDIA's internal build.
 
 ## Requirements
 
@@ -112,19 +125,22 @@ one request in flight per service, guardrails off, seeds 17/23/41 cycled
 evenly. The unit that sets your cost is **finished video-seconds per
 node-hour**, because every arrangement occupies the whole node.
 
-| Arrangement | Median per clip | Video-seconds / node-hour | vs 1 x 8 | Use it when |
+| Arrangement | Mean per clip | Video-seconds / node-hour | vs 1 x 8 | Use it when |
 | --- | ---: | ---: | ---: | --- |
-| 1 service x 8 GPUs (recommended layout) | 67.9 s | 417.4 | baseline | A person is waiting on a result |
-| 2 services x 4 GPUs (TP-4) | 120.1 s | 471.6 | +13% | Latency matters, throughput helps |
-| 4 services x 2 GPUs (TP-2) | 210.7 s | 537.3 | +29% | Balance latency and node throughput |
-| 8 services x 1 GPU (TP-1) | 376.3 s | 597.6 | +43% | Bulk offline generation, cost first |
+| 1 service x 8 GPUs (recommended layout) | 68.5 s | 413.6 | baseline | A person is waiting on a result |
+| 2 services x 4 GPUs (TP-4) | 121.5 s | 466.3 | +12.74% | Latency matters, throughput helps |
+| 4 services x 2 GPUs (TP-2) | 212.4 s | 529.0 | +27.90% | Balance latency and node throughput |
+| 8 services x 1 GPU (TP-1) | 378.1 s | 589.4 | +42.50% | Bulk offline generation, cost first |
 
 Every row returned 24 valid clips out of 24. No arrangement dominates another:
 throughput rises as GPUs per service fall, and latency rises with it. The 1 x 8
 endpoint answers interactive demand; the 8 x 1 endpoint answers bulk volume.
-Because the node is the billing unit, the cost per generated second is
-11.5%, 22.3%, and 30.2% lower than baseline at 1.77x, 3.10x, and 5.54x the
-baseline latency. These ratios hold at any node rate.
+These ten cells are in `results/b200-single-node-20260831.json`, measured on one
+node under one driver and one container image. Because the node is the billing
+unit, the cost per generated second is 11.3%, 21.8%, and 29.8% lower than
+baseline at 1.77x, 3.10x, and 5.52x the baseline latency. These ratios hold at
+any node rate. An earlier run of the same four arrangements, in
+`results/b200-topology.json`, reproduced these figures within 1.4%.
 
 Launch one topology on loopback. Stop it before launching a different topology:
 
@@ -139,6 +155,43 @@ and remove the listed containers with `docker rm -f <name> ...`.
 The 1 x 8 cell in that table uses the recommended hybrid layout; the multi
 service cells use tensor parallelism inside each service. No cell leaves a GPU
 idle.
+
+## Choose an H200 topology
+
+The same four arrangements were measured on one eight-GPU H200 node under the
+same driver, the same container digest, and the same workload as the B200 cells,
+so the two records differ in silicon rather than in software.
+
+| Arrangement | Mean per clip | Video-seconds / node-hour | vs 1 x 8 | Share of matched B200 node output |
+| --- | ---: | ---: | ---: | ---: |
+| 1 service x 8 GPUs (recommended layout) | 123.3 s | 229.9 | baseline | 55.59% |
+| 2 services x 4 GPUs (TP-4) | 230.0 s | 245.6 | +6.83% | 52.67% |
+| 4 services x 2 GPUs (TP-2) | 416.5 s | 271.4 | +18.05% | 51.30% |
+| 8 services x 1 GPU (TP-1) | 779.0 s | 289.1 | +25.75% | 49.05% |
+
+Every row returned 24 valid clips out of 24, in
+`results/h200-single-node-20260831.json`. Three things follow.
+
+**The ordering is the same on both platforms.** Throughput rises as GPUs per
+service fall, and the recommended full-node layout is the slowest arrangement by
+node output on H200 exactly as it is on B200. An operator who picked a layout
+from the B200 result would pick the same one on H200.
+
+**The payoff is smaller.** Splitting the node from one service into eight buys
+25.75% more node output on H200 against 42.50% on B200, and the cost per
+generated second falls 20.5% against 29.8%. The latency price is higher too:
+6.3 times baseline on H200 against 5.5 times on B200. Replica splitting is worth
+less on Hopper than the B200 numbers alone would suggest.
+
+**TP-1 fits.** A single H200 loads the model at 120.9 GiB against about 140.4
+GiB usable, leaving roughly 19 GiB, so the eight-service arrangement is
+measurable rather than blocked by memory. The Hopper operating point does not
+invert to TP-2.
+
+Across the four matched arrangements the H200 node delivers 49% to 56% of B200
+node output at 1.80 to 2.06 times the request latency. The share falls as GPUs
+per service fall, so the gap between the platforms is widest exactly where
+throughput is highest.
 
 ## The request contract
 
@@ -209,19 +262,29 @@ recorded this behavior:
   across the cells, consistent with request queueing rather than batching.
 - On one B200 service, raising concurrency from 1 to 2 moved throughput from
   49.06 to 54.99 clips per hour, about +12%, at a large latency cost.
-- On the B200 topologies, doubling concurrency was an operational tie: +3.1%
-  node throughput at +47% latency on 1 x 8, and +0.5% / +0.5% on 8 x 1.
+- On the B200 topologies, doubling concurrency to two requests in flight per
+  service raised node throughput by 3.2% on 1 x 8 and 0.4% on 8 x 1, while mean
+  request latency rose 47.1% and 32.9%. Every concurrency-two cell is bimodal:
+  the second request arriving at a service waits for the first, so the attempts
+  fall into two groups with an empty gap between them, and latency for those
+  cells is reported as the mean. On 8 x 1 the split is sixteen fast attempts and
+  eight slow ones, so a median lands inside the fast group and reports a 0.5%
+  cost while a third of the requests took about twice as long.
+- On the H200 topologies the same thing happens, with the same shape: +1.4% node
+  throughput at +48.8% mean latency on 2 x 4, and +0.5% at +49.6% on 4 x 2. Both
+  cells split twelve and twelve, and the slow group runs 1.97 to 1.99 times the
+  fast group.
 
 For this workload and node shape, use concurrency one. Add replica services when
 the objective is higher node throughput; the measured B200 topology increased
-throughput by 43%.
+throughput by 42.50%, and the H200 topology by 25.75%.
 
 ## Video validity checks
 
 `reproduce/validate-video.py` implements the strict gate used to revalidate the
-147 embedded B200 topology outputs and the 240 embedded single-node outputs, and
-applied by `benchmark.py` to new runs. Every embedded attempt in both files
-passed it.
+147 embedded B200 topology outputs, the 240 embedded B200 single-node outputs,
+and the 168 embedded H200 outputs, and applied by `benchmark.py` to new runs.
+Every embedded attempt in all three files passed it.
 The file must be a readable MP4 that decodes fully, reports 1280 x 720, 189
 frames, 24 fps, about 7.875 seconds, and is not blank or frozen. The validator
 exits nonzero and names the failing check if any part is off:
@@ -278,9 +341,21 @@ and describes no request that ran. Verify it the same way:
 python3 reproduce/derive-results.py --verify-embedded results/b200-single-node-20260831.json
 ```
 
-The H200 and B200 serving-envelope files are supplemental observational
-summaries. Their raw per-request inputs are not included, and no command in this
-repository rederives them.
+`results/h200-single-node-20260831.json` embeds 168 sanitized production attempts
+across seven cells on one H200 node, under the same rules and the same mean-based
+latency reporting. Its comparison block also carries the cross-platform ratios
+against the B200 single-node record, and `--verify-embedded` recomputes those
+from both files rather than accepting them:
+
+```bash
+python3 reproduce/derive-results.py --verify-embedded results/h200-single-node-20260831.json
+```
+
+The H200 and B200 serving-envelope files and the two environment files are
+supplemental observational summaries. Their raw per-request inputs are not
+included and no command here rederives them, so `--verify-embedded` reports
+`not_a_rederivable_record` and exits 2 on those four files rather than reporting
+a pass over checks it did not run.
 
 ## Data handling and what is not included
 
@@ -335,7 +410,11 @@ adds an unauthenticated public listener.
   consolidation measured on one B200 node under one driver and one image, being
   the four concurrency-one arrangements, their four concurrency-two counterparts,
   and two delayed repeats that bound within-node run-to-run variance.
-- `results/SHA256SUMS`: checksums over the six JSON files in `results/`.
+- `results/h200-single-node-20260831.json`: the matching seven cells on one H200
+  node under the same driver, container digest, and workload, being the four
+  arrangements, two concurrency-two counterparts, and one delayed repeat, plus
+  the cross-platform ratios against the B200 single-node record.
+- `results/SHA256SUMS`: checksums over the seven JSON files in `results/`.
 
 ## Methodology
 

@@ -3025,8 +3025,10 @@
   "comparison_basis": "b200_topology",
   "comparisons": {
     "concurrency_two": {
+      "T1_mean_latency_delta_pct": 47.29,
       "T1_median_latency_delta_pct": 47.4,
       "T1_throughput_delta_pct": 3.1,
+      "T4_mean_latency_delta_pct": 32.87,
       "T4_median_latency_delta_pct": 0.5,
       "T4_throughput_delta_pct": 0.5
     },
@@ -3051,6 +3053,6 @@
     "anchor": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
     "negative": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd"
   },
-  "scope": "One eight-GPU B200 node. T1, T2, T3, and T4 were run sequentially, with replicas inside each topology active concurrently. Fixed 1280x720, 189-frame, 24 fps, 35-step workload.",
+  "scope": "One eight-GPU B200 node. T1, T2, T3, and T4 were run sequentially, with replicas inside each topology active concurrently. Fixed 1280x720, 189-frame, 24 fps, 35-step workload. Both concurrency-two cells are bimodal, because the second request arriving at a service waits for the first. On T4C2 the split is uneven, sixteen fast attempts and eight slow, so the median falls inside the fast group and reports a latency cost of 0.5 percent while a third of the attempts took about twice as long. Use the mean-based deltas for those cells; the median-based keys are retained because they were published.",
   "technical_validity_evidence": "All 147 embedded production attempts matched source MP4 SHA-256 values that passed reproduce/validate-video.py. The generated clips are not distributed."
 }

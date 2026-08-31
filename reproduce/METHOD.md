@@ -168,7 +168,24 @@ python3 reproduce/derive-results.py \
 
 # 6. Verify the included B200 topology file
 python3 reproduce/derive-results.py --verify-embedded results/b200-topology.json
+python3 reproduce/derive-results.py --verify-embedded results/b200-single-node-20260831.json
+python3 reproduce/derive-results.py --verify-embedded results/h200-single-node-20260831.json
 ```
+
+The H200 ladder ran the same four arrangements, plus concurrency-two counterparts
+at 2 x 4 and 4 x 2 and a delayed repeat of the 1 x 8 cell, on one eight-GPU H200
+node. It reuses the B200 harness unchanged, so the per-attempt schema is
+identical and the two platforms are diffable. The controlled variables are
+recorded in the result file: driver, runtime version read from the server log on
+both sides, container image digest, torch, CUDA, NCCL, transformers, Docker, OS,
+model snapshot, workload, seed cycle, and guardrail posture all match the B200
+node; GPU model and memory, VBIOS, host CPU, host memory, and instance preset
+differ. Verification of that file also recomputes the cross-platform ratios
+against `results/b200-single-node-20260831.json`, so the comparison is checked
+rather than asserted.
+
+The four files with no embedded per-attempt inputs (the two environment records
+and the two serving envelopes) return `not_a_rederivable_record` and exit 2.
 
 Do not run a measured cell against a server that is still loading. Start, wait
 for the service to report ready, run one warmup per replica, then open the
