@@ -112,6 +112,40 @@ def verify_embedded(path):
         }
         if computed != document.get("comparisons"):
             failures.append({"comparison": "b200_topology", "published": document.get("comparisons"), "rederived": computed})
+    if document.get("comparison_basis") == "b200_single_node_20260831":
+        d = {name: cell["derived"] for name, cell in document["cells"].items()}
+        rate = lambda name: d[name]["video_seconds_per_node_hour"]
+        mean = lambda name: d[name]["mean_client_wall_s"]
+        # Two decimals on this basis, not one: the delayed-repeat deltas are around a
+        # tenth of a percent, and one decimal would not resolve them.
+        delta = lambda a, b: round((a / b - 1) * 100, 2)
+        pairs = (("T1_1x8", "T1C2"), ("T2_2x4", "T2C2"), ("T3_4x2", "T3C2"), ("T4_8x1", "T4C2"))
+        others = ("T2_2x4", "T3_4x2", "T4_8x1")
+        computed = {
+            "concurrency_two_throughput_delta_pct": {
+                base: delta(rate(conc), rate(base)) for base, conc in pairs
+            },
+            "concurrency_two_mean_latency_delta_pct": {
+                base: delta(mean(conc), mean(base)) for base, conc in pairs
+            },
+            "within_node_repeat_delta_pct": {
+                "T1R_vs_T1_throughput": delta(rate("T1R"), rate("T1_1x8")),
+                "T1R_vs_T1_mean_latency": delta(mean("T1R"), mean("T1_1x8")),
+                "T1C2R_vs_T1C2_throughput": delta(rate("T1C2R"), rate("T1C2")),
+                "T1C2R_vs_T1C2_mean_latency": delta(mean("T1C2R"), mean("T1C2")),
+            },
+            "throughput_gain_vs_T1_pct": {
+                name: delta(rate(name), rate("T1_1x8")) for name in others
+            },
+            "latency_ratio_vs_T1": {
+                name: round(mean(name) / mean("T1_1x8"), 2) for name in others
+            },
+            "cost_per_video_second_reduction_vs_T1_pct": {
+                name: round((1 - rate("T1_1x8") / rate(name)) * 100, 2) for name in others
+            },
+        }
+        if computed != document.get("comparisons"):
+            failures.append({"comparison": "b200_single_node", "published": document.get("comparisons"), "rederived": computed})
     return failures
 
 

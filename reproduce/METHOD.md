@@ -111,13 +111,22 @@ concurrency one; the lowest-latency topology (1 x 8) and highest-throughput
 topology (8 x 1) were then repeated at concurrency two. Throughput deltas under
 5% were treated as an operational tie.
 
+The later single-node consolidation ran all four topologies at both concurrency
+levels on one node, and added a delayed repeat of the 1 x 8 cell at each
+concurrency level to bound within-node run-to-run variance. Every concurrency-two
+cell is bimodal, because the second request arriving at a service waits for the
+first rather than overlapping with it, so that record summarizes latency by the
+mean; a median falls in the gap between the two groups and describes no request
+that ran.
+
 ## Result derivation
 
 `results/b200-topology.json` embeds 147 sanitized production attempts, exact
 window timestamps, and result values. The output SHA-256 in every embedded
 attempt matched a source MP4 that passed `validate-video.py`.
-`derive-results.py` recomputes every cell aggregate and comparison from the
-embedded inputs. The H200 and B200 serving-envelope files are supplemental
+`results/b200-single-node-20260831.json` embeds 240 attempts across ten cells
+under the same rules. `derive-results.py` recomputes every cell aggregate and
+comparison from the embedded inputs of either file. The H200 and B200 serving-envelope files are supplemental
 observations whose raw per-request inputs are not included. Server logs,
 telemetry, generated clips, prompt text, local paths, and infrastructure
 identifiers are excluded.

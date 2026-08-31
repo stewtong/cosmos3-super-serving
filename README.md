@@ -219,7 +219,9 @@ throughput by 43%.
 ## Video validity checks
 
 `reproduce/validate-video.py` implements the strict gate used to revalidate the
-147 embedded B200 topology outputs and applied by `benchmark.py` to new runs.
+147 embedded B200 topology outputs and the 240 embedded single-node outputs, and
+applied by `benchmark.py` to new runs. Every embedded attempt in both files
+passed it.
 The file must be a readable MP4 that decodes fully, reports 1280 x 720, 189
 frames, 24 fps, about 7.875 seconds, and is not blank or frozen. The validator
 exits nonzero and names the failing check if any part is off:
@@ -263,6 +265,17 @@ topology aggregate and comparison:
 
 ```bash
 python3 reproduce/derive-results.py --verify-embedded results/b200-topology.json
+```
+
+`results/b200-single-node-20260831.json` embeds 240 sanitized production attempts
+across ten cells under the same rules, and every attempt passed the strict
+validator. Latency in that file is summarized by the mean rather than the median,
+because each concurrency-two cell is bimodal: the second request arriving at a
+service waits for the first, so a median falls in the gap between the two groups
+and describes no request that ran. Verify it the same way:
+
+```bash
+python3 reproduce/derive-results.py --verify-embedded results/b200-single-node-20260831.json
 ```
 
 The H200 and B200 serving-envelope files are supplemental observational
@@ -318,7 +331,11 @@ adds an unauthenticated public listener.
   the 1/4/8 ladder, and the concurrency spot-check.
 - `results/b200-topology.json`: the four sequential topology cells, the
   concurrency-two confirmation, and the drift check.
-- `results/SHA256SUMS`: checksums over the five JSON files in `results/`.
+- `results/b200-single-node-20260831.json`: all ten cells of the single-node
+  consolidation measured on one B200 node under one driver and one image, being
+  the four concurrency-one arrangements, their four concurrency-two counterparts,
+  and two delayed repeats that bound within-node run-to-run variance.
+- `results/SHA256SUMS`: checksums over the six JSON files in `results/`.
 
 ## Methodology
 
