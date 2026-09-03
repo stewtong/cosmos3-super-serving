@@ -153,7 +153,12 @@ def check_platform(config, deployment):
 def assert_ports_free(deployment):
     ports = [deployment["front_door"]["port"], *deployment["backend_ports"]]
     for port in ports:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as connection:
+            connection.settimeout(0.2)
+            if connection.connect_ex(("127.0.0.1", port)) == 0:
+                raise SystemExit(f"loopback port {port} already has a listener")
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+            probe.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             try:
                 probe.bind(("127.0.0.1", port))
             except OSError as exc:

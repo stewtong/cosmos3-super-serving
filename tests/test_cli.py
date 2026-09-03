@@ -3,6 +3,7 @@ import contextlib
 import io
 import importlib.util
 import pathlib
+import socket
 import subprocess
 import tempfile
 import types
@@ -73,6 +74,43 @@ class CliDryRunTests(unittest.TestCase):
         )
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("overlaps", completed.stderr)
+
+    def test_port_preflight_rejects_an_active_listener(self):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener:
+            listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            listener.bind(("127.0.0.1", 0))
+            listener.listen()
+            port = listener.getsockname()[1]
+            deployment = {
+                "front_door": {"port": port},
+                "backend_ports": [],
+            }
+            with self.assertRaisesRegex(SystemExit, "already has a listener"):
+                CLI_MODULE.assert_ports_free(deployment)
+
+    def test_port_preflight_enables_reuse_before_bind(self):
+        connect_probe = mock.MagicMock()
+        connect_probe.__enter__.return_value = connect_probe
+        connect_probe.connect_ex.return_value = 111
+        bind_probe = mock.MagicMock()
+        bind_probe.__enter__.return_value = bind_probe
+
+        with mock.patch.object(
+            CLI_MODULE.socket,
+            "socket",
+            side_effect=[connect_probe, bind_probe],
+        ):
+            CLI_MODULE.assert_ports_free({
+                "front_door": {"port": 8000},
+                "backend_ports": [],
+            })
+
+        bind_probe.setsockopt.assert_called_once_with(
+            CLI_MODULE.socket.SOL_SOCKET,
+            CLI_MODULE.socket.SO_REUSEADDR,
+            1,
+        )
+        bind_probe.bind.assert_called_once_with(("127.0.0.1", 8000))
 
     def test_stop_removes_only_exact_label_results(self):
         with tempfile.TemporaryDirectory() as directory:
