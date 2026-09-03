@@ -99,6 +99,53 @@ class CliDryRunTests(unittest.TestCase):
             self.assertEqual(calls, [["docker", "rm", "-f", "exact-container-id"]])
             self.assertFalse(state_path.exists())
 
+    def test_stop_waits_for_router_exit_before_reporting_success(self):
+        with tempfile.TemporaryDirectory() as directory:
+            runtime_dir = pathlib.Path(directory)
+            state_path = CLI_MODULE.runtime_paths(runtime_dir)["state"]
+            CLI_MODULE.write_json(state_path, {
+                "run_id": "owned-run",
+                "router_pid": 1234,
+            })
+            args = types.SimpleNamespace(runtime_dir=str(runtime_dir), dry_run=False)
+
+            with mock.patch.object(CLI_MODULE, "docker_ids", return_value=[]), \
+                    mock.patch.object(CLI_MODULE, "router_process_matches", return_value=True), \
+                    mock.patch.object(CLI_MODULE, "wait_router_exit", return_value=True) as wait_exit, \
+                    mock.patch.object(CLI_MODULE.os, "kill") as kill, \
+                    contextlib.redirect_stdout(io.StringIO()):
+                result = CLI_MODULE.stop(None, args)
+
+            self.assertEqual(result, 0)
+            kill.assert_called_once_with(1234, CLI_MODULE.signal.SIGTERM)
+            wait_exit.assert_called_once_with(1234, "owned-run")
+            self.assertFalse(state_path.exists())
+
+    def test_stop_retains_state_when_router_cannot_be_stopped(self):
+        with tempfile.TemporaryDirectory() as directory:
+            runtime_dir = pathlib.Path(directory)
+            state_path = CLI_MODULE.runtime_paths(runtime_dir)["state"]
+            CLI_MODULE.write_json(state_path, {
+                "run_id": "owned-run",
+                "router_pid": 1234,
+            })
+            args = types.SimpleNamespace(runtime_dir=str(runtime_dir), dry_run=False)
+
+            with mock.patch.object(CLI_MODULE, "docker_ids", return_value=[]), \
+                    mock.patch.object(CLI_MODULE, "router_process_matches", return_value=True), \
+                    mock.patch.object(CLI_MODULE, "wait_router_exit", side_effect=[False, False]), \
+                    mock.patch.object(CLI_MODULE.os, "kill") as kill, \
+                    contextlib.redirect_stdout(io.StringIO()):
+                with self.assertRaisesRegex(SystemExit, "deployment state retained"):
+                    CLI_MODULE.stop(None, args)
+
+            self.assertEqual(
+                kill.call_args_list,
+                [mock.call(1234, CLI_MODULE.signal.SIGTERM),
+                 mock.call(1234, CLI_MODULE.signal.SIGKILL)],
+            )
+            self.assertTrue(state_path.exists())
+
     def test_gpu_device_request_quotes_multi_gpu_lists(self):
         self.assertEqual(CLI_MODULE.docker_gpu_device_request([0]), "device=0")
         self.assertEqual(CLI_MODULE.docker_gpu_device_request([0, 1]), '"device=0,1"')
