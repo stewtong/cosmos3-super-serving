@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="574" viewBox="0 0 1220 875" role="img" aria-labelledby="title desc">
+  <title id="title">Cosmos 3 Super GPU Topologies</title>
+  <desc id="desc">The same eight GPUs are configured as one eight-GPU replica using classifier-free guidance parallel size 2 and Ulysses degree 4, with Hybrid Sharded Data Parallel weight sharding across all eight ranks; two four-GPU replicas using tensor parallel size 4; four two-GPU replicas using tensor parallel size 2; or eight independent one-GPU replicas with no cross-GPU parallelism. Tensor parallelism shards supported diffusion transformer weights while the text encoder remains replicated in these vLLM-Omni layouts. Ulysses sequence parallelism partitions the video-token sequence and redistributes attention tensors through all-to-all communication. Classifier-free guidance parallelism runs the positive and negative guidance branches on separate GPUs. Hybrid Sharded Data Parallel shards model weights and gathers them as needed during each forward pass.</desc>
+  <style>
+    .bg { fill: #ffffff; }
+    .title { fill: #102a43; font: 700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .subtitle { fill: #486581; font: 400 19px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .rowlabel { fill: #102a43; font: 700 23px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .method { fill: #627d98; font: 400 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .node { fill: #f7f9fc; stroke: #bcccdc; stroke-width: 2; rx: 14; }
+    .service-a { fill: #e8f1ff; stroke: #2864dc; stroke-width: 3; rx: 10; }
+    .service-b { fill: #e8f8f3; stroke: #16896b; stroke-width: 3; rx: 10; }
+    .gpu { fill: #16324f; rx: 5; }
+    .gputext { fill: #ffffff; font: 700 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; text-anchor: middle; }
+    .servicetext { fill: #243b53; font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; text-anchor: middle; }
+    .legendbox { fill: #f7f9fc; stroke: #bcccdc; stroke-width: 2; rx: 12; }
+    .legendhead { fill: #102a43; font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .legendtext { fill: #486581; font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  </style>
+
+  <rect class="bg" width="1220" height="875"/>
+  <text class="title" x="40" y="52">Cosmos 3 Super GPU Topologies</text>
+  <text class="subtitle" x="40" y="84">Every topology uses all eight GPUs. Replica boundaries determine which GPUs cooperate on one generation.</text>
+
+  <!-- 1 replica × 8 GPUs -->
+  <text class="rowlabel" x="40" y="162">1 replica × 8 GPUs</text>
+  <text class="method" x="40" y="191">CFG 2 × Ulysses 4; HSDP shard size 8</text>
+  <rect class="node" x="400" y="115" width="775" height="116"/>
+  <rect class="service-a" x="420" y="128" width="736" height="90"/>
+  <text class="servicetext" x="788" y="151">Replica 1</text>
+  <g transform="translate(430,164)">
+    <rect class="gpu" x="0" y="0" width="76" height="42"/><rect class="gpu" x="90" y="0" width="76" height="42"/>
+    <rect class="gpu" x="180" y="0" width="76" height="42"/><rect class="gpu" x="270" y="0" width="76" height="42"/>
+    <rect class="gpu" x="360" y="0" width="76" height="42"/><rect class="gpu" x="450" y="0" width="76" height="42"/>
+    <rect class="gpu" x="540" y="0" width="76" height="42"/><rect class="gpu" x="630" y="0" width="76" height="42"/>
+    <text class="gputext" x="38" y="27">GPU</text><text class="gputext" x="128" y="27">GPU</text>
+    <text class="gputext" x="218" y="27">GPU</text><text class="gputext" x="308" y="27">GPU</text>
+    <text class="gputext" x="398" y="27">GPU</text><text class="gputext" x="488" y="27">GPU</text>
+    <text class="gputext" x="578" y="27">GPU</text><text class="gputext" x="668" y="27">GPU</text>
+  </g>
+
+  <!-- 2 replicas × 4 GPUs -->
+  <text class="rowlabel" x="40" y="317">2 replicas × 4 GPUs</text>
+  <text class="method" x="40" y="346">Tensor parallel size 4</text>
+  <rect class="node" x="400" y="270" width="775" height="116"/>
+  <rect class="service-a" x="420" y="283" width="356" height="90"/>
+  <rect class="service-b" x="780" y="283" width="376" height="90"/>
+  <text class="servicetext" x="598" y="306">Replica 1</text><text class="servicetext" x="968" y="306">Replica 2</text>
+  <g transform="translate(430,319)">
+    <rect class="gpu" x="0" y="0" width="76" height="42"/><rect class="gpu" x="90" y="0" width="76" height="42"/>
+    <rect class="gpu" x="180" y="0" width="76" height="42"/><rect class="gpu" x="270" y="0" width="76" height="42"/>
+    <rect class="gpu" x="360" y="0" width="76" height="42"/><rect class="gpu" x="450" y="0" width="76" height="42"/>
+    <rect class="gpu" x="540" y="0" width="76" height="42"/><rect class="gpu" x="630" y="0" width="76" height="42"/>
+    <text class="gputext" x="38" y="27">GPU</text><text class="gputext" x="128" y="27">GPU</text>
+    <text class="gputext" x="218" y="27">GPU</text><text class="gputext" x="308" y="27">GPU</text>
+    <text class="gputext" x="398" y="27">GPU</text><text class="gputext" x="488" y="27">GPU</text>
+    <text class="gputext" x="578" y="27">GPU</text><text class="gputext" x="668" y="27">GPU</text>
+  </g>
+
+  <!-- 4 replicas × 2 GPUs -->
+  <text class="rowlabel" x="40" y="472">4 replicas × 2 GPUs</text>
+  <text class="method" x="40" y="501">Tensor parallel size 2</text>
+  <rect class="node" x="400" y="425" width="775" height="116"/>
+  <rect class="service-a" x="420" y="438" width="176" height="90"/><rect class="service-b" x="600" y="438" width="176" height="90"/>
+  <rect class="service-a" x="780" y="438" width="176" height="90"/><rect class="service-b" x="960" y="438" width="196" height="90"/>
+  <text class="servicetext" x="508" y="461">R1</text><text class="servicetext" x="688" y="461">R2</text>
+  <text class="servicetext" x="868" y="461">R3</text><text class="servicetext" x="1058" y="461">R4</text>
+  <g transform="translate(430,474)">
+    <rect class="gpu" x="0" y="0" width="76" height="42"/><rect class="gpu" x="90" y="0" width="76" height="42"/>
+    <rect class="gpu" x="180" y="0" width="76" height="42"/><rect class="gpu" x="270" y="0" width="76" height="42"/>
+    <rect class="gpu" x="360" y="0" width="76" height="42"/><rect class="gpu" x="450" y="0" width="76" height="42"/>
+    <rect class="gpu" x="540" y="0" width="76" height="42"/><rect class="gpu" x="630" y="0" width="76" height="42"/>
+    <text class="gputext" x="38" y="27">GPU</text><text class="gputext" x="128" y="27">GPU</text>
+    <text class="gputext" x="218" y="27">GPU</text><text class="gputext" x="308" y="27">GPU</text>
+    <text class="gputext" x="398" y="27">GPU</text><text class="gputext" x="488" y="27">GPU</text>
+    <text class="gputext" x="578" y="27">GPU</text><text class="gputext" x="668" y="27">GPU</text>
+  </g>
+
+  <!-- 8 replicas × 1 GPU -->
+  <text class="rowlabel" x="40" y="627">8 replicas × 1 GPU</text>
+  <text class="method" x="40" y="656">No cross-GPU parallelism</text>
+  <rect class="node" x="400" y="580" width="775" height="116"/>
+  <g>
+    <rect class="service-a" x="420" y="593" width="86" height="90"/><rect class="service-b" x="510" y="593" width="86" height="90"/>
+    <rect class="service-a" x="600" y="593" width="86" height="90"/><rect class="service-b" x="690" y="593" width="86" height="90"/>
+    <rect class="service-a" x="780" y="593" width="86" height="90"/><rect class="service-b" x="870" y="593" width="86" height="90"/>
+    <rect class="service-a" x="960" y="593" width="86" height="90"/><rect class="service-b" x="1050" y="593" width="106" height="90"/>
+  </g>
+  <g transform="translate(425,629)">
+    <rect class="gpu" x="0" y="0" width="76" height="42"/><rect class="gpu" x="90" y="0" width="76" height="42"/>
+    <rect class="gpu" x="180" y="0" width="76" height="42"/><rect class="gpu" x="270" y="0" width="76" height="42"/>
+    <rect class="gpu" x="360" y="0" width="76" height="42"/><rect class="gpu" x="450" y="0" width="76" height="42"/>
+    <rect class="gpu" x="540" y="0" width="76" height="42"/><rect class="gpu" x="630" y="0" width="76" height="42"/>
+    <text class="gputext" x="38" y="27">GPU</text><text class="gputext" x="128" y="27">GPU</text>
+    <text class="gputext" x="218" y="27">GPU</text><text class="gputext" x="308" y="27">GPU</text>
+    <text class="gputext" x="398" y="27">GPU</text><text class="gputext" x="488" y="27">GPU</text>
+    <text class="gputext" x="578" y="27">GPU</text><text class="gputext" x="668" y="27">GPU</text>
+  </g>
+
+  <rect class="legendbox" x="40" y="720" width="1135" height="125"/>
+  <text class="legendhead" x="60" y="750">Multi-GPU replicas divide one generation across GPUs</text>
+  <text class="legendtext" x="60" y="782">Tensor parallelism (TP): shards supported DiT weights</text>
+  <text class="legendtext" x="595" y="782">Ulysses-SP: partitions sequence and redistributes attention tensors</text>
+  <text class="legendtext" x="60" y="811">Text encoder remains replicated with tensor parallelism</text>
+  <text class="legendtext" x="595" y="811">CFG: runs positive and negative branches separately</text>
+  <text class="legendtext" x="60" y="836">HSDP: shards weights and gathers them for each forward pass</text>
+  <text class="legendtext" x="595" y="836">One-GPU replicas: complete, independent model copies</text>
+</svg>
