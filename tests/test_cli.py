@@ -99,6 +99,105 @@ class CliDryRunTests(unittest.TestCase):
             self.assertEqual(calls, [["docker", "rm", "-f", "exact-container-id"]])
             self.assertFalse(state_path.exists())
 
+    def test_gpu_device_request_quotes_multi_gpu_lists(self):
+        self.assertEqual(CLI_MODULE.docker_gpu_device_request([0]), "device=0")
+        self.assertEqual(CLI_MODULE.docker_gpu_device_request([0, 1]), '"device=0,1"')
+        self.assertEqual(
+            CLI_MODULE.docker_gpu_device_request(list(range(8))),
+            '"device=0,1,2,3,4,5,6,7"',
+        )
+
+    def test_failed_docker_run_removes_created_container_by_exact_label(self):
+        config = CLI_MODULE.load_config(CLI_MODULE.DEFAULT_CONFIG)
+        with tempfile.TemporaryDirectory() as directory:
+            runtime_dir = pathlib.Path(directory) / "runtime"
+            args = types.SimpleNamespace(
+                runtime_dir=str(runtime_dir),
+                profile="latency",
+                topology=None,
+                platform="h200",
+                backend_base_port=None,
+                port=None,
+                active_requests=1,
+                queue_limit=None,
+                queue_timeout=None,
+                startup_timeout=None,
+                guardrails=False,
+                cache_dir=str(pathlib.Path(directory) / "cache"),
+                dry_run=False,
+            )
+            docker_ps_results = iter(["created-container-id\n", ""])
+            commands = []
+
+            def fake_run(command, **_kwargs):
+                commands.append(command)
+                if command[:2] == ["docker", "run"]:
+                    raise subprocess.CalledProcessError(125, command, stderr="invalid GPU request")
+                if command[:3] == ["docker", "ps", "-aq"]:
+                    return types.SimpleNamespace(
+                        returncode=0, stdout=next(docker_ps_results), stderr=""
+                    )
+                if command[:3] == ["docker", "rm", "-f"]:
+                    return types.SimpleNamespace(returncode=0, stdout="", stderr="")
+                raise AssertionError(f"unexpected command: {command}")
+
+            with mock.patch.object(CLI_MODULE, "check_platform"), \
+                    mock.patch.object(CLI_MODULE, "assert_ports_free"), \
+                    mock.patch.object(CLI_MODULE, "run", side_effect=fake_run):
+                with self.assertRaisesRegex(SystemExit, "deployment failed"):
+                    CLI_MODULE.serve(config, args)
+
+            launch = next(command for command in commands if command[:2] == ["docker", "run"])
+            self.assertEqual(launch[launch.index("--gpus") + 1], '"device=0,1,2,3,4,5,6,7"')
+            self.assertIn(["docker", "rm", "-f", "created-container-id"], commands)
+            self.assertFalse(CLI_MODULE.runtime_paths(runtime_dir)["state"].exists())
+
+    def test_failed_cleanup_retains_state_for_stop_retry(self):
+        config = CLI_MODULE.load_config(CLI_MODULE.DEFAULT_CONFIG)
+        with tempfile.TemporaryDirectory() as directory:
+            runtime_dir = pathlib.Path(directory) / "runtime"
+            args = types.SimpleNamespace(
+                runtime_dir=str(runtime_dir),
+                profile="latency",
+                topology=None,
+                platform="h200",
+                backend_base_port=None,
+                port=None,
+                active_requests=1,
+                queue_limit=None,
+                queue_timeout=None,
+                startup_timeout=None,
+                guardrails=False,
+                cache_dir=str(pathlib.Path(directory) / "cache"),
+                dry_run=False,
+            )
+
+            def fake_run(command, **_kwargs):
+                if command[:2] == ["docker", "run"]:
+                    raise subprocess.CalledProcessError(125, command, stderr="launch failed")
+                if command[:3] == ["docker", "ps", "-aq"]:
+                    return types.SimpleNamespace(
+                        returncode=0, stdout="created-container-id\n", stderr=""
+                    )
+                if command[:3] == ["docker", "rm", "-f"]:
+                    return types.SimpleNamespace(
+                        returncode=1, stdout="", stderr="removal denied"
+                    )
+                raise AssertionError(f"unexpected command: {command}")
+
+            with mock.patch.object(CLI_MODULE, "check_platform"), \
+                    mock.patch.object(CLI_MODULE, "assert_ports_free"), \
+                    mock.patch.object(CLI_MODULE, "run", side_effect=fake_run):
+                with self.assertRaisesRegex(
+                    SystemExit,
+                    "automatic cleanup failed.*deployment state retained",
+                ):
+                    CLI_MODULE.serve(config, args)
+
+            state_path = CLI_MODULE.runtime_paths(runtime_dir)["state"]
+            self.assertTrue(state_path.exists())
+            self.assertEqual(CLI_MODULE.read_state(runtime_dir)["phase"], "starting")
+
 
 if __name__ == "__main__":
     unittest.main()

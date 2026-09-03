@@ -168,6 +168,28 @@ def docker_ids(run_id):
     return [line.strip() for line in completed.stdout.splitlines() if line.strip()]
 
 
+def docker_gpu_device_request(gpu_group):
+    gpu_csv = ",".join(str(gpu) for gpu in gpu_group)
+    if len(gpu_group) == 1:
+        return f"device={gpu_csv}"
+    return f'"device={gpu_csv}"'
+
+
+def remove_owned_containers(run_id):
+    ids = docker_ids(run_id)
+    if not ids:
+        return []
+    removed = run(["docker", "rm", "-f", *ids], check=False)
+    if removed.returncode != 0:
+        raise RuntimeError(f"container removal failed: {removed.stderr.strip()}")
+    remaining = docker_ids(run_id)
+    if remaining:
+        raise RuntimeError(
+            "container removal left exact-label resources: " + ", ".join(remaining)
+        )
+    return ids
+
+
 def wait_backend(name, timeout_s):
     started = time.monotonic()
     while time.monotonic() - started < timeout_s:
@@ -232,7 +254,6 @@ def serve(config, args):
     write_json(paths["state"], deployment)
 
     image = f"{deployment['container']['image']}@{deployment['container']['digest']}"
-    started_names = []
     readiness = []
     router = None
     router_log = None
@@ -241,12 +262,11 @@ def serve(config, args):
             deployment["gpu_groups"], deployment["backend_ports"]
         )):
             name = f"{deployment['run_id']}-r{index}"
-            gpu_csv = ",".join(str(gpu) for gpu in gpu_group)
             command = [
                 "docker", "run", "-d", "--name", name,
                 "--label", f"io.cosmos3-super.run={deployment['run_id']}",
                 "--label", "io.cosmos3-super.role=backend",
-                "--gpus", f"device={gpu_csv}",
+                "--gpus", docker_gpu_device_request(gpu_group),
                 "--ipc=host", "--shm-size", "32g",
                 "--ulimit", "nofile=1048576:1048576",
                 "-v", f"{cache_dir}:/root/.cache/huggingface",
@@ -266,7 +286,6 @@ def serve(config, args):
             if not args.guardrails:
                 command.append("--no-guardrails")
             container_id = run(command).stdout.strip()
-            started_names.append(name)
             ready_utc = wait_backend(name, deployment["startup_timeout_seconds"])
             readiness.append({
                 "replica": f"r{index}",
@@ -333,13 +352,21 @@ def serve(config, args):
                 router.wait(timeout=10)
             except subprocess.TimeoutExpired:
                 router.kill()
-        if started_names:
-            run(["docker", "rm", "-f", *started_names], check=False)
+        cleanup_error = None
         try:
-            paths["state"].unlink()
-        except FileNotFoundError:
-            pass
-        raise SystemExit(f"deployment failed: {exc}") from exc
+            remove_owned_containers(deployment["run_id"])
+        except Exception as cleanup_exc:
+            cleanup_error = cleanup_exc
+        if cleanup_error is None:
+            try:
+                paths["state"].unlink()
+            except FileNotFoundError:
+                pass
+            raise SystemExit(f"deployment failed: {exc}") from exc
+        raise SystemExit(
+            f"deployment failed: {exc}; automatic cleanup failed: {cleanup_error}; "
+            f"deployment state retained at {paths['state']} for an exact-label stop retry"
+        ) from exc
     finally:
         if router_log is not None:
             router_log.close()
