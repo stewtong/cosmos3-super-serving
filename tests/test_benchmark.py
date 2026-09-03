@@ -1,4 +1,5 @@
 import importlib.util
+import json
 import pathlib
 import subprocess
 import sys
@@ -221,6 +222,42 @@ class BenchmarkTests(unittest.TestCase):
             )
             self.assertEqual(completed.returncode, 0, completed.stderr)
             self.assertIn("11 valid, 1 invalid", completed.stdout)
+
+    def test_v2_defaults_to_full_profile_health(self):
+        completed = subprocess.run(
+            [sys.executable, str(ROOT / "reproduce" / "benchmark-v2.py"),
+             "--profile", "throughput", "--dry-run"],
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        output = json.loads(completed.stdout)
+        self.assertEqual(output["expected_healthy_replicas"], 8)
+        self.assertEqual(output["expected_unavailable_replicas"], 0)
+
+    def test_v2_accepts_explicit_degraded_health_control(self):
+        completed = subprocess.run(
+            [sys.executable, str(ROOT / "reproduce" / "benchmark-v2.py"),
+             "--profile", "throughput", "--expected-healthy-replicas", "7",
+             "--expected-unavailable-replicas", "1", "--dry-run"],
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        output = json.loads(completed.stdout)
+        self.assertEqual(output["expected_healthy_replicas"], 7)
+        self.assertEqual(output["expected_unavailable_replicas"], 1)
+
+    def test_v2_rejects_health_counts_outside_profile_capacity(self):
+        completed = subprocess.run(
+            [sys.executable, str(ROOT / "reproduce" / "benchmark-v2.py"),
+             "--profile", "throughput", "--expected-healthy-replicas", "7",
+             "--expected-unavailable-replicas", "0", "--dry-run"],
+            text=True,
+            capture_output=True,
+        )
+        self.assertEqual(completed.returncode, 2)
+        self.assertIn("sum to the profile capacity", completed.stderr)
 
 
 if __name__ == "__main__":

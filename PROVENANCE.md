@@ -49,6 +49,8 @@ The canonical August 31 records were collected by a source runner that:
 
 `reproduce/benchmark-v2.py` measures the node-local routed endpoint through a work-conserving closed loop. V2 writes a distinct comparison basis. It has no claim on the historical v1 results until new dated measurements are collected.
 
+`results/runtime-validation-20260903.json` is a sanitized live H200 operability record. It names runtime commit `90c66cc`. The publication candidate retains identical `bin/`, `serving/`, and `config/` content; later commits add documentation, evidence, and benchmark-client changes. The record contains profile and control verdicts, output hashes, and technical dimensions while excluding smoke-test timing from performance evidence. Prompt text, generated media, logs, infrastructure identifiers, local paths, process IDs, and container IDs remain outside the repository.
+
 ## Generated tables trace to embedded records
 
 `reproduce/render-benchmarks.py` reads the two primary records and earlier B200 record to produce `BENCHMARKS.md`. Check mode compares the committed document byte for byte with a fresh rendering and recomputes displayed ratios from the cell aggregates.
@@ -57,4 +59,4 @@ The canonical August 31 records were collected by a source runner that:
 
 ## NVIDIA figures remain attributed material
 
-NVIDIA comparison figures are attributed to [`NVIDIA/cosmos` inference_benchmarks.md](https://github.com/NVIDIA/cosmos/blob/main/inference_benchmarks.md#cosmos3-super-generator). They remain NVIDIA material and are not redistributed as source records here.
+NVIDIA comparison figures are attributed to the immutable [`NVIDIA/cosmos` benchmark revision](https://github.com/NVIDIA/cosmos/blob/f9c425669bffd2bf910067fbef7e0d5d8240fa84/inference_benchmarks.md#cosmos3-super-generator). They remain NVIDIA material and are not redistributed as source records here.

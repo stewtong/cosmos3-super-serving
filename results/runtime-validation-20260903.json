@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "validation_date": "2026-09-03",
+  "result": "pass",
+  "scope": "live serving operability smoke test; not performance evidence",
+  "runtime_candidate_commit": "90c66cc8c82759bae221f665dbedd80186d29ade",
+  "platform": {
+    "gpu_class": "NVIDIA H200",
+    "gpu_count": 8
+  },
+  "pins": {
+    "container_digest": "sha256:6d2630c7d637b699557573f2c3fee8df5d4d0cd718977aa22549ed6a6ef30587",
+    "model_id": "nvidia/Cosmos3-Super",
+    "model_revision": "e0262be9d8f7586bc24c069a2aed2b665bdff266"
+  },
+  "workload": {
+    "prompt_sha256": "61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677",
+    "negative_prompt_sha256": "007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd",
+    "width": 1280,
+    "height": 720,
+    "frames": 189,
+    "fps": 24,
+    "duration_seconds": 7.875
+  },
+  "profiles": {
+    "latency": {
+      "topology": "1x8",
+      "replicas": 1,
+      "gpus_per_replica": 8,
+      "launch": "pass",
+      "healthy_capacity": "pass",
+      "routed_outputs": {
+        "attempts": 1,
+        "technically_valid": 1,
+        "sha256": [
+          "9453b71442c11546e685f2026a596e68cac963158a27ced3a90d42b4551ef754"
+        ]
+      },
+      "status": "pass",
+      "teardown": "pass"
+    },
+    "balanced": {
+      "topology": "4x2",
+      "replicas": 4,
+      "gpus_per_replica": 2,
+      "launch": "pass",
+      "healthy_capacity": "pass",
+      "routed_outputs": {
+        "attempts": 4,
+        "technically_valid": 4,
+        "every_replica_completed": true,
+        "sha256": [
+          "aec3ab7a0c96d43a7cfc8dcb8ab68dfe511b48e1bbf5c7be5264e15f337f232a",
+          "053a74d6678ed326845888efaca7022ad49c99f9e5a2cfda88b0d366920a8a48",
+          "8aa20249a7619b02d7b83746680fb9e2573619da9e220d8ffc1b662791cae5aa",
+          "a3caf11468d808dfb2769a2bc71a6a6c6b434ad25880dce2428ed6275a128eb7"
+        ]
+      },
+      "status": "pass",
+      "teardown": "pass"
+    },
+    "throughput": {
+      "topology": "8x1",
+      "replicas": 8,
+      "gpus_per_replica": 1,
+      "launch": "pass",
+      "healthy_capacity": "pass",
+      "routed_outputs": {
+        "attempts": 8,
+        "technically_valid": 8,
+        "every_replica_completed": true,
+        "sha256": [
+          "8902849ab2514da0f61005ae9107cc676cf6b474a0dc7454edd2ba0feb6105a5",
+          "9169f9aca6e82edc9c9ead52e2bc851aab2f5449bad57f437d795bda6b768867",
+          "355b585b068c4f8c46d33d76aef6c24a2b5a1ca21bf6eeb68ef6ba1b6034a3c0",
+          "3922d4846ba711bcf5e0f1974ebe6f98bc084796aaa8fa5afaf50b84a1524c3e",
+          "5c93b866a40e3d88302b24466ee23c2104561b351fee6251899b5e040bdc50a7",
+          "342ac0bea25ec2487ffb8ac807b1c84ecac58070040fe813139168d78800b397",
+          "5621c8d30f4f3bfcc6cfb46d4857a3937e62947842939a3b38ae5f6cfcdeebfd",
+          "94f5cf3e2691325789f66229b1921a8633104266313958b81c617cb2b87c4b66"
+        ]
+      },
+      "status": "pass",
+      "teardown": "pass"
+    }
+  },
+  "controls": {
+    "bounded_admission": {
+      "result": "pass",
+      "active_requests": 8,
+      "queued_requests": 8,
+      "queue_limit": 8,
+      "request_17_http_status": 429,
+      "request_17_dispatched_to_backend": false,
+      "router_rejected_count": 1
+    },
+    "unhealthy_replica": {
+      "result": "pass",
+      "healthy_before": 8,
+      "healthy_after": 7,
+      "unavailable_after": 1,
+      "unavailable_replica_received_new_work": false,
+      "surviving_route_http_status": 200,
+      "surviving_route_technically_valid": true,
+      "surviving_output_sha256": "d5943e30d716031b4cfa0e15c376f8b2175860d4a19df2d46a094af8bf6608b5",
+      "teardown_removed_running_and_stopped_owned_containers": true
+    }
+  },
+  "cleanup": {
+    "result": "pass",
+    "owned_containers_remaining": 0,
+    "gpu_compute_applications_remaining": 0,
+    "reserved_listeners_remaining": 0,
+    "runtime_paths_remaining": 0
+  },
+  "exclusions": [
+    "Smoke-test timings are not benchmark results.",
+    "This validation did not exercise the launcher live on B200.",
+    "This validation did not test semantic quality, guardrail overhead, public ingress, authentication, or multi-node serving.",
+    "Prompt text, generated media, logs, infrastructure identifiers, cache paths, process IDs, and container IDs are excluded."
+  ]
+}

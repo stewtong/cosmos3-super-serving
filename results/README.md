@@ -2,7 +2,7 @@
 
 # Result records and evidence levels
 
-The directory contains three aggregate-rederivable records and four supplemental summaries. Historical JSON files remain unchanged so their checksums and original scope statements stay auditable.
+The directory contains three aggregate-rederivable records, four supplemental summaries, and one live operability record. Historical JSON files remain unchanged so their checksums and original scope statements stay auditable.
 
 ## Primary records define the 408-attempt study
 
@@ -25,6 +25,10 @@ Each cell embeds sanitized per-attempt records, an exact production window, deri
 | [`h200-serving-envelope.json`](h200-serving-envelope.json) | startup, hybrid versus TP-8, guardrail, concurrency, and determinism observations | Aggregate summary; no embedded per-request inputs |
 | [`b200-environment.json`](b200-environment.json) | platform and software inventory from the earlier evidence assembly | Environment summary |
 | [`h200-environment.json`](h200-environment.json) | platform and software inventory from the earlier evidence assembly | Environment summary |
+
+## Live validation covers the serving path
+
+[`runtime-validation-20260903.json`](runtime-validation-20260903.json) records a live H200 operability pass for the three named profiles, bounded admission, unhealthy-replica removal, and exact teardown. It contains sanitized verdicts and output hashes without smoke-test performance figures. It is excluded from the 408-attempt primary benchmark count and does not establish live B200 launcher coverage.
 
 The environment summaries were written before the final August 31 topology cells. Their embedded exclusion arrays preserve that earlier state and are superseded by the current scope in [`../reproduce/METHOD.md`](../reproduce/METHOD.md). The files stay byte-stable as historical evidence.
 

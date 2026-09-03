@@ -14,6 +14,9 @@ class ClaimReconciliationTests(unittest.TestCase):
     def setUp(self):
         self.b200 = read_json(ROOT / "results" / "b200-single-node-20260831.json")
         self.h200 = read_json(ROOT / "results" / "h200-single-node-20260831.json")
+        self.runtime_validation = read_json(
+            ROOT / "results" / "runtime-validation-20260903.json"
+        )
         self.readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.method = (ROOT / "reproduce" / "METHOD.md").read_text(encoding="utf-8")
 
@@ -64,6 +67,31 @@ class ClaimReconciliationTests(unittest.TestCase):
         )
         self.assertNotIn(" optimal ", self.readme.lower())
         self.assertNotIn(" best ", self.readme.lower())
+
+    def test_runtime_validation_record_is_operability_only(self):
+        record = self.runtime_validation
+        self.assertEqual(record["result"], "pass")
+        self.assertIn("not performance evidence", record["scope"])
+        self.assertEqual(
+            {
+                name: value["topology"]
+                for name, value in record["profiles"].items()
+            },
+            {"latency": "1x8", "balanced": "4x2", "throughput": "8x1"},
+        )
+        self.assertEqual(
+            record["controls"]["bounded_admission"]["request_17_http_status"],
+            429,
+        )
+        self.assertEqual(
+            record["controls"]["unhealthy_replica"]["healthy_after"], 7
+        )
+        encoded = json.dumps(record, sort_keys=True)
+        for forbidden in (
+            "window_seconds", "client_wall_s", "server_generation_s",
+            "computeinstance-", "/var/tmp/", "/data/", "router_pid",
+        ):
+            self.assertNotIn(forbidden, encoded)
 
 
 if __name__ == "__main__":

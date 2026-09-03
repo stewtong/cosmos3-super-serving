@@ -89,7 +89,7 @@ The primary B200 record contains ten cells and 240 attempts:
 - four concurrency-two counterparts, 24 attempts each;
 - delayed repeats of the 1 x 8 topology at concurrency one and two, 24 attempts each.
 
-The B200 record combines two sessions on the same node under one driver and container image. The four cells were not collected in one uninterrupted session.
+The B200 record combines two sessions on the same node under one driver and container image. Six cells ran in one session and four ran in the earlier session; the ten cells were not collected in one uninterrupted session.
 
 The primary H200 record contains seven cells and 168 attempts:
 
@@ -153,6 +153,6 @@ Supplemental startup, guardrail, determinism, and NVIDIA-grid observations have 
 
 `benchmark.py` is the v1 runner. It normalizes and checks prompt hashes before measurement, uses synchronized rounds, records the response-completion window, performs technical validation afterward, and preserves every attempt when validation fails.
 
-`benchmark-v2.py` measures a named deployment through the node-local router using a work-conserving closed loop. V2 includes routing and queue time in client latency and records router state. Its outputs use the distinct `cosmos3_super_serving_v2` comparison basis. V2 data cannot be appended to or presented as reproduction of the v1 records.
+`benchmark-v2.py` measures a named deployment through the node-local router using a work-conserving closed loop. V2 includes routing and queue time in client latency and records router state. Full healthy profile capacity is the default precondition. Explicit expected healthy and unavailable counts support a separately labeled degraded-capacity control, and those counts must sum to the profile capacity. Its outputs use the distinct `cosmos3_super_serving_v2` comparison basis. V2 data cannot be appended to or presented as reproduction of the v1 records.
 
 The complete command matrix and output contract are in [`REPRODUCE.md`](REPRODUCE.md).

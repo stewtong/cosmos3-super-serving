@@ -9,8 +9,10 @@ The included benchmark evidence supports three operating profiles:
 | Profile | Eight-GPU topology | B200 mean latency | B200 node throughput | H200 mean latency | H200 node throughput | Selection basis |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | `latency` | 1 replica x 8 GPUs, hybrid | 68.5 s | 413.6 video-s/node-hour | 123.3 s | 229.9 video-s/node-hour | Lowest measured request latency |
-| `balanced` | 4 replicas x 2 GPUs, TP-2 | 212.4 s | 529.0 video-s/node-hour | 416.5 s | 271.4 video-s/node-hour | Intermediate measured latency and node throughput |
+| `balanced` | 4 replicas x 2 GPUs, TP-2 | 212.4 s | 529.0 video-s/node-hour | 416.5 s | 271.4 video-s/node-hour | Retains most 8x1 throughput at lower latency |
 | `throughput` | 8 replicas x 1 GPU, TP-1 | 378.1 s | 589.4 video-s/node-hour | 779.0 s | 289.1 video-s/node-hour | Highest node throughput among the four measured topologies for the pinned workload |
+
+Compared with `throughput`, `balanced` retained 89.8% of B200 node throughput with 43.8% lower mean latency. On H200 it retained 93.9% of node throughput with 46.5% lower mean latency.
 
 The measurements compare complete serving topologies. Replica count, GPUs per replica, and parallel configuration change together. They do not isolate replica count or one parallel method as the cause.
 
@@ -29,7 +31,7 @@ Launch the throughput profile on B200:
 bin/cosmos3-super serve --platform b200 --profile throughput
 ```
 
-Use `--platform h200` for H200. The launcher verifies the GPU count and model, starts each replica sequentially, waits for application readiness, starts the router, and prints the endpoint only after every backend is healthy. The tested image digest and model revision come from [`config/profiles.json`](config/profiles.json).
+Use `--platform h200` for H200. The launcher checks the GPU count and type, starts the pinned model revision in each replica, waits for application readiness, starts the router, and prints the endpoint only after every backend is healthy. The tested image digest and model revision come from [`config/profiles.json`](config/profiles.json).
 
 Inspect any profile without a GPU or Docker:
 
@@ -53,7 +55,9 @@ Every profile exposes:
 http://127.0.0.1:8000/v1/videos/sync
 ```
 
-The router preserves the synchronous multipart request and MP4 response contract. It assigns work only to healthy, idle replicas. One request may run on each replica; additional admitted work waits in a bounded node queue. With the default throughput profile, requests one through eight run, the ninth waits, and the seventeenth returns HTTP 429 while all earlier requests remain active or queued. Queue expiry returns HTTP 504, and loss of all healthy replicas returns HTTP 503. A request that fails after backend dispatch is not replayed automatically.
+The router preserves the synchronous multipart request and MP4 response contract. It assigns work only to healthy, idle replicas. One request may run on each replica; additional admitted work waits in a bounded node queue.
+
+With the default throughput profile, up to eight requests run and up to eight wait. In the validated saturation control, eight requests were active and eight were queued when request 17 returned HTTP 429 before backend dispatch. Queue expiry returns HTTP 504, and loss of all healthy replicas returns HTTP 503. A request that fails after backend dispatch is not replayed automatically.
 
 The router binds to loopback. Public ingress, TLS, authentication, tenant isolation, quotas, and distributed coordination belong outside this repository.
 
@@ -68,6 +72,14 @@ bin/cosmos3-super stop
 `status` reads router counters, queue depth, replica health, active requests, container state, the model revision, and the image digest. `stop` prints its exact target set, then signals only the recorded router process and removes containers carrying the current run's exact ownership label.
 
 Detailed operation, failure, queue, guardrail, and lifecycle behavior is in [`SERVING.md`](SERVING.md).
+
+## The operator path passed live H200 validation
+
+The launcher and router were exercised on one eight-GPU H200 node with the pinned image and model revision. Each named profile launched, reached its expected healthy capacity, served one valid routed output per replica, reported matching counters, and tore down without leaving containers, GPU applications, or reserved listeners.
+
+A throughput-profile control filled eight active and eight queued slots before request 17 returned HTTP 429. Another control stopped one exact backend, observed seven healthy and one unavailable replica, served a valid output through a survivor, and removed all running and stopped owned containers during normal teardown.
+
+[`results/runtime-validation-20260903.json`](results/runtime-validation-20260903.json) contains the sanitized verdicts and output hashes. It names runtime commit `90c66cc`; the publication candidate has identical `bin/`, `serving/`, and `config/` content. Later commits add documentation, evidence, and benchmark-client changes without changing the validated serving runtime. Smoke-test timings are excluded from performance claims. The live run did not exercise the launcher on B200.
 
 ## The profiles trace to 408 validated attempts
 
@@ -110,7 +122,7 @@ python3 reproduce/render-benchmarks.py --check
 
 The v1 harness reproduces the published August 31, 2026 protocol: pinned prompt hashes, synchronized rounds, one warmup per replica, response timing through MP4 persistence, and technical validation after the production window closes.
 
-The v2 harness measures a named profile through the stable router endpoint with a work-conserving closed loop. V2 results use a separate comparison basis and new output directory. They do not alter or extend the v1 records.
+The v2 harness measures a named profile through the stable router endpoint with a work-conserving closed loop. It defaults to full healthy capacity and accepts explicit expected healthy and unavailable counts for a degraded-capacity control. V2 results use a separate comparison basis and new output directory. They do not alter or extend the v1 records.
 
 [`reproduce/REPRODUCE.md`](reproduce/REPRODUCE.md) gives the complete 17-cell v1 matrix, prompt-hash preflight, one-cell commands, v2 routed commands, direct-backend controls, output files, and teardown boundaries.
 

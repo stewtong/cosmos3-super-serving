@@ -179,6 +179,24 @@ Keep routed and direct results in separate dated directories. Report router over
 
 A saturation control may submit above measured capacity to characterize HTTP 429 and 504 behavior. Label it as a queue control rather than profile throughput evidence.
 
+After an operator deliberately removes one exact backend from an eight-replica throughput deployment, the v2 client can require the resulting degraded health state before sending a control request:
+
+```bash
+python3 reproduce/benchmark-v2.py \
+  --profile throughput \
+  --mode routed \
+  --expected-healthy-replicas 7 \
+  --expected-unavailable-replicas 1 \
+  --endpoint http://127.0.0.1:8000/v1/videos/sync \
+  --prompt <snapshot>/assets/example_t2v_prompt.json \
+  --negative-prompt <snapshot>/assets/negative_prompt.json \
+  --attempts 1 \
+  --warmups-per-worker 0 \
+  --output ./runs/v2-h200-throughput-degraded-<date>
+```
+
+The two expected replica counts must be nonnegative and sum to the profile capacity. These options validate an operator-created health state; they do not stop a backend. Label this run as a health-routing control rather than throughput evidence.
+
 ## Included records remain immutable evidence
 
 Verify the published result files from the manifest directory:

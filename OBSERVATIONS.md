@@ -2,7 +2,7 @@
 
 # Supporting serving observations
 
-These measurements explain startup, guardrail, determinism, and external-grid behavior around the primary topology study. Their controls differ from the 17-cell primary records, and several carry only aggregate summaries. They do not extend the primary cell census or change the profile claims.
+These measurements cover startup, guardrails, determinism, and comparison with NVIDIA's published benchmark. Their controls differ from the main 17-cell study, and several include aggregate summaries without raw request records. They do not add cells to the main study or change the profile claims.
 
 ## Startup depends on parallel layout and cache state
 
@@ -44,22 +44,22 @@ Sources: [`results/h200-serving-envelope.json`](results/h200-serving-envelope.js
 
 On one H200 node, the hybrid CFG-2, Ulysses-4, HSDP-8 layout measured 120.57 seconds of server generation at 35 steps against 131.26 seconds for TP-8. At 50 steps, the same comparison was 166.26 against 181.31 seconds. The hybrid layout was about 9% faster at both step counts.
 
-The B200 serving envelope recorded 35-step client wall times of 68 to 70 seconds for the hybrid layout and 77 to 78 seconds for TP-8. Its 50-step comparison was 91 against 104 seconds. These are supplemental same-host controls, not cells in the 408-attempt topology census.
+Additional B200 measurements on the same node recorded 35-step client wall times of 68 to 70 seconds for the hybrid layout and 77 to 78 seconds for TP-8. The 50-step comparison was 91 against 104 seconds. These measurements are separate from the main 408-attempt study.
 
-## NVIDIA grid comparisons use a different runtime boundary
+## NVIDIA's published benchmark uses a different runtime boundary
 
-NVIDIA's [`Cosmos3-Super Generator benchmarks`](https://github.com/NVIDIA/cosmos/blob/main/inference_benchmarks.md#cosmos3-super-generator) report B200 text-to-video latency of 390.28, 113.31, and 62.11 seconds at one, four, and eight GPUs. The supplemental B200 ladder measured 377, 122, and 77.3 seconds at the same nominal shape through the pinned public `vllm/vllm-omni:cosmos3` image.
+NVIDIA's [`Cosmos3-Super Generator benchmarks`](https://github.com/NVIDIA/cosmos/blob/f9c425669bffd2bf910067fbef7e0d5d8240fa84/inference_benchmarks.md#cosmos3-super-generator) report B200 text-to-video latency of 390.28, 113.31, and 62.11 seconds at one, four, and eight GPUs. The additional B200 measurements recorded 377, 122, and 77.3 seconds at the same nominal shape through the pinned public `vllm/vllm-omni:cosmos3` image.
 
 The NVIDIA values came from an internal vLLM-Omni build on a different driver branch. The public image reports vLLM 0.25.0. The one-GPU, four-GPU, and eight-GPU differences were respectively 3.4% lower, 7.7% higher, and 24.5% higher latency in the public-stack observations. Neither runtime version nor driver branch was isolated as the cause.
 
 The repository's profile decisions use the internally controlled B200 and H200 topology records, not the cross-runtime grid comparison.
 
-## Supplemental concurrency shows queueing behavior
+## Additional concurrency tests show queueing behavior
 
-The H200 full-node service used random prompts with guardrails enabled for its concurrency envelope. Raising in-flight requests from one to eight moved throughput from 28.21 to 30.96 clips per hour while mean latency rose from 127.6 to 729.0 seconds. Peak memory stayed within 2 MB across the cells, consistent with queueing rather than on-GPU batching.
+The H200 full-node service used random prompts with guardrails enabled. Raising in-flight requests from one to eight moved throughput from 28.21 to 30.96 clips per hour while mean latency rose from 127.6 to 729.0 seconds. Peak memory stayed within 2 MB across the measurements, consistent with queueing rather than on-GPU batching.
 
-The B200 full-node supplemental envelope moved from 49.06 to 54.99 clips per hour between concurrency one and two under guardrails. The primary topology records provide the matched guardrails-disabled concurrency comparisons used for admission policy; those values are in [`BENCHMARKS.md`](BENCHMARKS.md).
+The additional B200 full-node measurements moved from 49.06 to 54.99 clips per hour between concurrency one and two under guardrails. The main topology records provide the matched guardrails-disabled comparisons used for admission policy; those values are in [`BENCHMARKS.md`](BENCHMARKS.md).
 
 ## Evidence limits
 
-The two serving-envelope JSON files are observational summaries. They do not embed every per-request input and return exit code 2 under `derive-results.py --verify-embedded`. The primary topology records embed their attempts and windows and remain the authority for profile latency, node throughput, concurrency, repeats, and cross-platform claims.
+The two supporting serving JSON files contain aggregate summaries without every per-request input. They return exit code 2 under `derive-results.py --verify-embedded`. The main topology records embed their attempts and timing windows and remain the authority for profile latency, node throughput, concurrency, repeats, and cross-platform claims.

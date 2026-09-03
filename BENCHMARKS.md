@@ -11,14 +11,18 @@ The four primary rows compare complete serving topologies. Replica count, GPUs p
 
 ## The profiles select different operating points
 
-| Topology | Named profile | B200 mean latency | B200 node throughput | B200 throughput gain | H200 mean latency | H200 node throughput | H200 throughput gain |
+| Topology | Named profile | B200 mean latency | B200 video-s/node-hour | B200 throughput gain | H200 mean latency | H200 video-s/node-hour | H200 throughput gain |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | 1 x 8 hybrid | `latency` | 68.5 s | 413.6 | +0.00% | 123.3 s | 229.9 | +0.00% |
 | 2 x 4 TP-4 | `explicit override` | 121.5 s | 466.3 | +12.74% | 230.0 s | 245.6 | +6.83% |
 | 4 x 2 TP-2 | `balanced` | 212.4 s | 529.0 | +27.90% | 416.5 s | 271.4 | +18.05% |
 | 8 x 1 TP-1 | `throughput` | 378.1 s | 589.4 | +42.50% | 779.0 s | 289.1 | +25.75% |
 
-Eight single-GPU replicas produced the highest node throughput among the four measured topologies for the pinned workload on both platforms. One eight-GPU hybrid replica produced the lowest request latency. The `balanced` profile selects the measured 4 x 2 TP-2 point between them. These are workload-bounded profile descriptions, not universal optimality claims.
+Eight single-GPU replicas produced the highest node throughput among the four measured topologies for the pinned workload on both platforms. One eight-GPU hybrid replica produced the lowest request latency.
+
+The `balanced` profile retains 89.8% of B200 8 x 1 node throughput with 43.8% lower mean latency. On H200 it retains 93.9% of node throughput with 46.5% lower mean latency.
+
+These are workload-bounded profile descriptions, not universal optimality claims.
 
 ![Latency and node-throughput tradeoffs for the four B200 and H200 topologies](docs/assets/cosmos3-super-latency-throughput-tradeoffs.svg)
 
@@ -76,7 +80,7 @@ Concurrency-two cells are bimodal because the second request at a replica waits 
 
 ## The earlier B200 record corroborates the topology ordering
 
-[`results/b200-topology.json`](results/b200-topology.json) contains 147 attempts across seven cells. It is corroborating evidence and is excluded from the 408-attempt primary census.
+[`results/b200-topology.json`](results/b200-topology.json) contains 147 attempts across seven cells. It supports the same topology ordering and is excluded from the main 408-attempt count.
 
 | Cell | Role | Serving topology | Requests per replica | Valid / attempted | Mean latency | Median latency | P95 latency | Video-seconds / node-hour |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |

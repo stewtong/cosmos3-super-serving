@@ -80,6 +80,8 @@ def main():
     parser.add_argument("--new-workload", action="store_true")
     parser.add_argument("--attempts", type=int, default=24)
     parser.add_argument("--warmups-per-worker", type=int, default=1)
+    parser.add_argument("--expected-healthy-replicas", type=int)
+    parser.add_argument("--expected-unavailable-replicas", type=int, default=0)
     parser.add_argument("--timeout", type=int, default=5400)
     parser.add_argument("--output", default="./bench-v2-out")
     parser.add_argument("--overwrite", action="store_true")
@@ -92,6 +94,19 @@ def main():
         config = json.load(handle)
     topology_name = config["profiles"][args.profile]["topology"]
     capacity = config["topologies"][topology_name]["replicas"]
+    expected_healthy = (
+        capacity if args.expected_healthy_replicas is None
+        else args.expected_healthy_replicas
+    )
+    if (
+        expected_healthy < 0
+        or args.expected_unavailable_replicas < 0
+        or expected_healthy + args.expected_unavailable_replicas != capacity
+    ):
+        parser.error(
+            "expected healthy and unavailable replicas must be nonnegative "
+            "and sum to the profile capacity"
+        )
     if args.mode == "routed":
         endpoints = [args.endpoint] * capacity
     else:
@@ -108,6 +123,8 @@ def main():
             "topology": topology_name,
             "mode": args.mode,
             "worker_capacity": capacity,
+            "expected_healthy_replicas": expected_healthy,
+            "expected_unavailable_replicas": args.expected_unavailable_replicas,
             "load_schedule": "work-conserving closed loop",
             "validation_boundary": "after the production window closes",
         }, indent=2))
@@ -138,7 +155,8 @@ def main():
                 "profile": args.profile,
                 "topology": topology_name,
                 "active_requests_per_replica": 1,
-                "healthy_replicas": capacity,
+                "healthy_replicas": expected_healthy,
+                "unavailable_replicas": args.expected_unavailable_replicas,
                 "guardrails": False,
             }
             mismatched = {
@@ -165,9 +183,12 @@ def main():
 
         status_before = router_status(args.endpoint) if args.mode == "routed" else None
         if args.mode == "routed" and (
-            status_before is None or status_before.get("healthy_replicas") != capacity
+            status_before is None
+            or status_before.get("healthy_replicas") != expected_healthy
+            or status_before.get("unavailable_replicas")
+            != args.expected_unavailable_replicas
         ):
-            raise ValueError("router lost expected healthy capacity before the production window")
+            raise ValueError("router lost expected health state before the production window")
         window_start_utc = V1.utc_now()
         started = time.monotonic()
         records = closed_loop(
@@ -186,6 +207,8 @@ def main():
             "mode": args.mode,
             "load_schedule": "work_conserving_closed_loop",
             "worker_capacity": capacity,
+            "expected_healthy_replicas": expected_healthy,
+            "expected_unavailable_replicas": args.expected_unavailable_replicas,
             "window_start_utc": window_start_utc,
             "window_end_utc": window_end_utc,
             "window_seconds": round(window_seconds, 6),

@@ -61,14 +61,14 @@ Automatic replay after dispatch can duplicate a long generation when completion 
 
 Queue defaults are eight waiting requests and 900 seconds. Generation timeout is 5400 seconds. Override queue settings at launch:
 
-For the eight-replica throughput profile, requests one through eight run immediately, requests nine through sixteen may wait, and request seventeen receives HTTP 429 while the first sixteen remain active or queued.
-
 ```bash
 bin/cosmos3-super serve --platform b200 --profile throughput \
   --queue-limit 16 --queue-timeout 600
 ```
 
 Changing queue settings does not change the one-active-request limit. Any future higher-admission mode must carry an experimental label and new measurements.
+
+With the default queue limit, a synchronized saturation control can hold eight active and eight queued requests. A seventeenth concurrent request then receives HTTP 429 before backend dispatch. This ordinal behavior depends on the first sixteen requests still occupying the active and queued slots.
 
 ## Health removes failed replicas from admission
 
