@@ -1,192 +1,158 @@
-# Methodology
+<!-- register: public benchmark methodology | reader: performance engineers and reviewers | consumed: evidence review on GitHub -->
 
-The included benchmark measures client wall time, validates each returned MP4,
-and derives topology throughput from run-level windows. The B200 topology result
-can be rederived from its embedded inputs. The H200 and B200 serving envelopes
-are supplemental observations whose raw per-request inputs are not included.
+# Cosmos3-Super serving benchmark method
 
-## Workload
+This method defines the v1 evidence contract used for the August 31, 2026 single-node records. It measures complete serving topologies for the `nvidia/Cosmos3-Super` text-to-video Generator path through the pinned vLLM-Omni container.
 
-Fixed across every cell:
+## Workload controls fix the generated request
 
-| Field | Value |
+| Field | Fixed value |
 | --- | --- |
-| Model | `nvidia/Cosmos3-Super` snapshot `e0262be9d8f7586bc24c069a2aed2b665bdff266` |
-| Task | text-to-video (generator tower) |
-| Precision | BF16 |
-| Size / frames / fps | 1280 x 720 / 189 / 24 |
-| Denoising steps | 35 |
-| Guidance / flow shift / max seq len | 6.0 / 10.0 / 4096 |
-| Output duration | 7.875 s per valid clip |
-| Prompt and negative prompt | the model repo anchors `assets/example_t2v_prompt.json` and `assets/negative_prompt.json`; recorded by SHA-256, not reproduced here |
-| Seeds | 17, 23, 41 (cycled evenly) |
-| Guardrails | disabled for the topology cells; enabled cells are labeled |
-| Endpoint | `POST /v1/videos/sync`, client and server sync timeout 5400 s |
+| Model | `nvidia/Cosmos3-Super` |
+| Model revision | `e0262be9d8f7586bc24c069a2aed2b665bdff266` |
+| Task and precision | text to video, Generator tower, BF16 |
+| Prompt | model snapshot `assets/example_t2v_prompt.json`, UTF-8 text with leading and trailing whitespace stripped, SHA-256 `61c9c4b46b6787d967cc509a2bf323766e70bf5ecf40e09a739362beac135677` |
+| Negative prompt | model snapshot `assets/negative_prompt.json`, same normalization, SHA-256 `007a1bdfe1ec3edf3b9a71789ca1999a47ad565560f269a3d78bf9a8dfef9cfd` |
+| Seeds | 17, 23, and 41, cycled by attempt index within each replica |
+| Resolution | 1280 x 720 |
+| Frames and rate | 189 frames at 24 fps |
+| Output duration | 7.875 seconds for each technically valid clip |
+| Denoising | 35 steps, guidance 6.0, flow shift 10.0 |
+| Maximum sequence length | 4096 |
+| Templates | resolution and duration templates disabled through `extra_params` |
+| Guardrails | disabled |
+| Endpoint | `POST /v1/videos/sync` with client and server timeout of 5400 seconds |
 
-The request uses multipart form data with the fields above plus
-`extra_params={"use_resolution_template": false, "use_duration_template":
-false, "guardrails": <posture>}` and the seed. `benchmark.py --dry-run` prints
-the fixed fields, seed cycle, and timeout without reading prompt files.
+Prompt text is read from the operator's local model snapshot. Public records contain hashes, never prompt text.
 
-## NVIDIA reference grid
+## Serving configuration pins the public stack
 
-NVIDIA's [Cosmos3-Super Generator benchmarks](https://github.com/NVIDIA/cosmos/blob/main/inference_benchmarks.md#cosmos3-super-generator)
-document BF16, batch size one, matched prompts, seeds, and sampler settings, 189
-frames at 24 fps, tensor parallelism for four- and eight-GPU configurations, and
-engine-specific timing boundaries. The controls above make this repository's
-topology cells comparable with one another. Concurrency-two confirmations are
-labeled separately, and the same validity gate applies to every attempt. The
-runtime and driver versions differ from NVIDIA's runs, so the published latency
-grid is a contextual reference.
+| Field | Fixed value |
+| --- | --- |
+| Container | `vllm/vllm-omni:cosmos3@sha256:6d2630c7d637b699557573f2c3fee8df5d4d0cd718977aa22549ed6a6ef30587` |
+| Runtime | vLLM 0.25.0 inside the image |
+| PyTorch | 2.11.0+cu130 |
+| CUDA | 13.0 |
+| NCCL | 2.28.9 |
+| Transformers | 5.13.0 |
+| Docker | 29.7.0 for the matched B200/H200 records |
+| Host OS | Ubuntu 24.04 |
+| Node width | eight GPUs, every topology fills the node |
 
-## Servers
+A serving topology combines replica count, GPUs assigned to each replica, and the parallel configuration within each replica. Each replica is an independent vLLM-Omni container with a disjoint GPU group and loopback endpoint.
 
-Every service runs the pinned container `vllm/vllm-omni:cosmos3@
-sha256:6d2630c7d637b699557573f2c3fee8df5d4d0cd718977aa22549ed6a6ef30587`,
-which is vLLM-Omni with vLLM 0.25.0 inside, served from a loopback address on
-the node.
+| Topology | Parallel configuration |
+| --- | --- |
+| 1 replica x 8 GPUs | CFG parallel size 2, Ulysses degree 4, HSDP shard size 8, Ring degree 1 |
+| 2 replicas x 4 GPUs | tensor parallel size 4 per replica |
+| 4 replicas x 2 GPUs | tensor parallel size 2 per replica |
+| 8 replicas x 1 GPU | tensor parallel size 1 per replica |
 
-- Full-node recommended service (H200 or B200): `serve-h200.sh` /
-  `serve-b200.sh`. Flags:
-  `--cfg-parallel-size 2 --ulysses-degree 4 --use-hsdp --hsdp-shard-size 8
-  --init-timeout 1800` plus guardrail posture. This is the model card's
-  recommended layout: CFG-2 (two guidance groups), Ulysses-4 (four-way sequence
-  parallelism within each group), HSDP-8 (model state sharded across an
-  eight-rank group). These are overlapping dimensions of the same eight GPUs,
-  not replicas or a 64-GPU deployment.
-- B200 topology cells: `serve-b200-replicas.sh`. Rendered as
-  replicas x GPUs per replica. The 1 x 8 cell is the recommended hybrid layout;
-  the 2 x 4, 4 x 2, and 8 x 1 cells use tensor parallelism inside each service
-  (`--tensor-parallel-size 4 / 2 / 1`). Each replica is its own container, gets
-  a disjoint GPU group and its own host port, and every cell fills the node.
+CFG, Ulysses, and HSDP operate across overlapping dimensions of the same eight GPUs in the hybrid topology. They do not describe a 64-rank deployment.
 
-Start replicas sequentially. The launcher waits for each replica to report
-application readiness before starting the next. Measure one topology at a time
-and begin only after every replica in that cell is ready.
+## Technical validity gates every attempt
 
-## Timing boundary
+An attempt is technically valid only when it:
 
-Request latency is **client wall time** (dispatch to full response), reported
-as median with mean, min, max, and p95 where the sample count supports it. Each
-cell runs a measurement window: fully resident services, one warmup request per
-replica excluded, window opened at first dispatch and closed at final
-completion. The window includes request routing, generation, MP4 encoding,
-replica skew, and any idle tail. It excludes service construction and model
-load. The supplemental serving observations include server-side generation time
-where it was recorded. The included benchmark records client wall time and
-leaves the reserved server-generation field null. The two are never averaged
-together.
+1. returns HTTP 200 under the declared timeout;
+2. produces a non-empty MP4 that decodes from first to last frame;
+3. reports 1280 x 720, exactly 189 frames, 24 fps, and 7.80 to 7.95 seconds;
+4. contains spatial detail and change across five sampled frames.
 
-Node throughput is duration of valid output divided by window time, normalized
-to an hour: `generated video-seconds / node-hour`. Allocated GPU-hours are
-`window hours x 8`; aggregate GPU-hours are never computed by summing request
-wall times.
+`validate-video.py` implements the gate. Failed, refused, timed-out, corrupt, blank, frozen, and wrong-shape attempts remain in the attempt denominator. They contribute no generated video-seconds.
 
-## Validity gate
+This gate does not score prompt adherence, visual quality, temporal consistency, physical plausibility, realism, human acceptance, or downstream training utility.
 
-An attempt counts as valid only if it:
+## Timing separates requests from post-response validation
 
-1. returns HTTP 200 under the declared timeout,
-2. produces a non-empty MP4 that decodes cleanly from first to last frame,
-3. reports 1280 x 720, exactly 189 frames, 24 fps, and 7.80 to 7.95 seconds,
-4. contains visible spatial detail and change across five sampled frames.
+Request latency is client wall time from dispatch through receipt and persistence of the complete MP4. Every replica completes one warmup request before the production window opens. The window starts immediately before the first production round and closes immediately after the final response is persisted.
 
-`validate-video.py` implements exactly this gate. Attempts that fail, are
-refused, time out, or come back corrupt stay in the denominator, and the yield
-is the fraction valid over attempted.
+The production window includes request routing, generation, MP4 encoding, replica skew, failed-attempt time, and the idle tail until the last attempt completes. It excludes service construction, model loading, warmup, and post-response MP4 validation.
 
-## Determinism and output identity
+The v1 runner dispatches synchronized rounds across all replicas. At concurrency one, each replica receives one request and the next round waits for every replica. At concurrency two, each round sends up to two requests per replica and waits for every request in that round. Seeds cycle independently by attempt index within each replica.
 
-The supplemental observations found byte-identical output at a fixed seed within
-one live server instance. Across a server restart, the H200 same-config median
-PSNR band was 26.81-28.99 dB and the B200 band was 32.13-32.17 dB. Do not use
-output identity across separate boots as a correctness signal.
+Node throughput is:
 
-## Concurrency
-
-Request concurrency is requests in flight per service. It is distinct from
-replica count (independent services) and from on-GPU parallelism (TP /
-CFG / Ulysses / HSDP inside one service). Every topology cell ran at
-concurrency one; the lowest-latency topology (1 x 8) and highest-throughput
-topology (8 x 1) were then repeated at concurrency two. Throughput deltas under
-5% were treated as an operational tie.
-
-The later single-node consolidation ran all four topologies at both concurrency
-levels on one node, and added a delayed repeat of the 1 x 8 cell at each
-concurrency level to bound within-node run-to-run variance. Every concurrency-two
-cell is bimodal, because the second request arriving at a service waits for the
-first rather than overlapping with it, so that record summarizes latency by the
-mean; a median falls in the gap between the two groups and describes no request
-that ran.
-
-## Result derivation
-
-`results/b200-topology.json` embeds 147 sanitized production attempts, exact
-window timestamps, and result values. The output SHA-256 in every embedded
-attempt matched a source MP4 that passed `validate-video.py`.
-`results/b200-single-node-20260831.json` embeds 240 attempts across ten cells
-under the same rules. `derive-results.py` recomputes every cell aggregate and
-comparison from the embedded inputs of either file. The H200 and B200 serving-envelope files are supplemental
-observations whose raw per-request inputs are not included. Server logs,
-telemetry, generated clips, prompt text, local paths, and infrastructure
-identifiers are excluded.
-
-## Exclusions
-
-- Any replica baseline on H200 (not measured).
-- The 4 x 2 topology at concurrency two (not measured).
-- Ring parallelism greater than 1 (not tested).
-- Semantic quality, human acceptance, and downstream utility. All throughput
-  here counts technically valid output only.
-- Transfer to other output shapes, models, or node counts.
-- The reasoner tower and model-quality rankings.
-
-## Reproduce
-
-```bash
-# 1. Start a full-node service (loopback)
-bash reproduce/serve-h200.sh          # or serve-b200.sh
-# or launch a topology on B200
-TOPOLOGY=8x1 bash reproduce/serve-b200-replicas.sh
-
-# 2. Inspect the request contract (no GPU)
-python3 reproduce/benchmark.py --dry-run \
-  --prompt <path>/assets/example_t2v_prompt.json \
-  --negative-prompt <path>/assets/negative_prompt.json
-
-# 3. Self-check the recording + derivation pipeline with no server (no GPU)
-python3 reproduce/benchmark.py --fixtures
-
-# 4. Run a cell (service must be resident first)
-python3 reproduce/benchmark.py --host 127.0.0.1 --topology 1x8 \
-  --prompt ... --negative-prompt ... --output ./bench-out \
-  --attempts 24 --concurrency 1
-
-# 5. Re-derive the aggregates
-python3 reproduce/derive-results.py \
-  ./bench-out/requests.jsonl ./bench-out/window.json
-
-# 6. Verify the included B200 topology file
-python3 reproduce/derive-results.py --verify-embedded results/b200-topology.json
-python3 reproduce/derive-results.py --verify-embedded results/b200-single-node-20260831.json
-python3 reproduce/derive-results.py --verify-embedded results/h200-single-node-20260831.json
+```text
+technically valid clips x 7.875 video-seconds x 3600 / production-window seconds
 ```
 
-The H200 ladder ran the same four arrangements, plus concurrency-two counterparts
-at 2 x 4 and 4 x 2 and a delayed repeat of the 1 x 8 cell, on one eight-GPU H200
-node. It reuses the B200 harness unchanged, so the per-attempt schema is
-identical and the two platforms are diffable. The controlled variables are
-recorded in the result file: driver, runtime version read from the server log on
-both sides, container image digest, torch, CUDA, NCCL, transformers, Docker, OS,
-model snapshot, workload, seed cycle, and guardrail posture all match the B200
-node; GPU model and memory, VBIOS, host CPU, host memory, and instance preset
-differ. Verification of that file also recomputes the cross-platform ratios
-against `results/b200-single-node-20260831.json`, so the comparison is checked
-rather than asserted.
+Every topology uses the full node, so the primary throughput unit is generated video-seconds per node-hour. Video-seconds per GPU-hour is the node value divided by eight.
 
-The four files with no embedded per-attempt inputs (the two environment records
-and the two serving envelopes) return `not_a_rederivable_record` and exit 2.
+![Benchmark reporting contract from fixed workload and complete topology through request timing, technical validation, and node-throughput derivation](../docs/assets/cosmos3-super-benchmark-reporting-contract.svg)
 
-Do not run a measured cell against a server that is still loading. Start, wait
-for the service to report ready, run one warmup per replica, then open the
-window.
+## Experimental factors cover topology, concurrency, and drift
+
+The primary B200 record contains ten cells and 240 attempts:
+
+- four concurrency-one topologies, 24 attempts each;
+- four concurrency-two counterparts, 24 attempts each;
+- delayed repeats of the 1 x 8 topology at concurrency one and two, 24 attempts each.
+
+The B200 record combines two sessions on the same node under one driver and container image. The four cells were not collected in one uninterrupted session.
+
+The primary H200 record contains seven cells and 168 attempts:
+
+- four concurrency-one topologies, 24 attempts each;
+- concurrency-two counterparts for 2 x 4 and 4 x 2, 24 attempts each;
+- one delayed repeat of the 1 x 8 topology, 24 attempts.
+
+The earlier B200 record contains seven cells and 147 attempts. It corroborates the topology ordering and is excluded from the 408-attempt primary census.
+
+Concurrency is requests in flight per replica. It is separate from replica count and from on-GPU parallelism. Concurrency-two latency is reported by the mean because each measured cell is bimodal: one group runs immediately and one group waits behind another request.
+
+## Platform controls separate matched and differing fields
+
+The canonical B200 and H200 records match on:
+
+- NVIDIA driver 580.173.02;
+- the container digest and runtime versions listed above;
+- model revision, task, precision, prompts, seeds, request shape, sampler fields, guardrail posture, endpoint, and timeout;
+- replica definitions, topology definitions, warmup, synchronized dispatch, timing boundaries, technical validator, attempt count, and formulas.
+
+They differ in:
+
+- GPU model and memory;
+- VBIOS;
+- host CPU model and core count;
+- host memory;
+- instance preset.
+
+The absolute B200/H200 gap is therefore a matched-stack systems comparison, not a silicon-only measurement. H200 reproduced the B200 topology ordering for this workload; different absolute latency and throughput may still change an operator's preferred point.
+
+## Public records support aggregate rederivation
+
+| Record | Role | Cells | Attempts | Embedded inputs |
+| --- | --- | ---: | ---: | --- |
+| `results/b200-single-node-20260831.json` | primary B200 | 10 | 240 | per-attempt records and exact windows |
+| `results/h200-single-node-20260831.json` | primary H200 | 7 | 168 | per-attempt records and exact windows |
+| `results/b200-topology.json` | earlier B200 corroboration | 7 | 147 | per-attempt records and exact windows |
+| `results/b200-serving-envelope.json` | supplemental observation | n/a | n/a | aggregate summary only |
+| `results/h200-serving-envelope.json` | supplemental observation | n/a | n/a | aggregate summary only |
+| `results/b200-environment.json` | supplemental environment | n/a | n/a | environment summary only |
+| `results/h200-environment.json` | supplemental environment | n/a | n/a | environment summary only |
+
+`derive-results.py` recomputes every aggregate and comparison from the embedded attempts and windows in the three rederivable records. The four supplemental files return `not_a_rederivable_record` with exit code 2 because their raw per-request inputs are absent.
+
+All 408 primary attempts and all 147 earlier B200 attempts were matched by SHA-256 to source MP4s that passed `validate-video.py`. Generated clips, logs, prompt text, telemetry, local paths, infrastructure identifiers, and credentials are excluded from the public records.
+
+## Scope and exclusions bound the claims
+
+The primary result supports profile selection among the four measured complete topologies for this pinned workload and stack. It does not isolate replica count, GPU silicon, tensor parallelism, CFG parallelism, Ulysses sequence parallelism, or HSDP as a single causal factor.
+
+The evidence excludes:
+
+- ring parallelism greater than 1;
+- other output shapes, model variants, engines, images, node sizes, batching strategies, and future runtime versions;
+- semantic or human quality evaluation and downstream training utility;
+- the Cosmos3-Super reasoner tower and model-quality rankings.
+
+Supplemental startup, guardrail, determinism, and NVIDIA-grid observations have narrower controls and are documented separately in [`../OBSERVATIONS.md`](../OBSERVATIONS.md).
+
+## Reproduction preserves v1 and separates v2
+
+`benchmark.py` is the v1 runner. It normalizes and checks prompt hashes before measurement, uses synchronized rounds, records the response-completion window, performs technical validation afterward, and preserves every attempt when validation fails.
+
+`benchmark-v2.py` measures a named deployment through the node-local router using a work-conserving closed loop. V2 includes routing and queue time in client latency and records router state. Its outputs use the distinct `cosmos3_super_serving_v2` comparison basis. V2 data cannot be appended to or presented as reproduction of the v1 records.
+
+The complete command matrix and output contract are in [`REPRODUCE.md`](REPRODUCE.md).

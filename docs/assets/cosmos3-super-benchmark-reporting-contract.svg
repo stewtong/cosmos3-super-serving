@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="430" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+  <title id="title">Three groups of information needed for comparable serving results</title>
+  <desc id="desc">A reporting checklist groups benchmark details into workload, serving setup, and evaluation.</desc>
+  <style>
+    .bg { fill: #ffffff; }
+    .title { fill: #102a43; font: 700 34px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .subtitle { fill: #486581; font: 400 19px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .card { fill: #ffffff; stroke: #bcccdc; stroke-width: 2; rx: 14; }
+    .bar-workload { fill: #2864dc; }
+    .bar-serving { fill: #16896b; }
+    .bar-evaluation { fill: #b66a12; }
+    .number { fill: #ffffff; font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .cardtitle { fill: #ffffff; font: 700 25px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .item { fill: #334e68; font: 400 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .bullet-workload { fill: #2864dc; }
+    .bullet-serving { fill: #16896b; }
+    .bullet-evaluation { fill: #b66a12; }
+    .note-bg { fill: #f0f4f8; rx: 11; }
+    .note { fill: #334e68; font: 500 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  </style>
+
+  <rect class="bg" width="1600" height="860"/>
+  <text class="title" x="40" y="55">Comparable serving results need three groups of information</text>
+  <text class="subtitle" x="40" y="89">Report what ran, how it was served, and what counted as success.</text>
+
+  <!-- Workload card -->
+  <rect class="card" x="40" y="135" width="480" height="525"/>
+  <path class="bar-workload" d="M54 135h452a14 14 0 0 1 14 14v64H40v-64a14 14 0 0 1 14-14z"/>
+  <circle cx="82" cy="174" r="20" fill="#ffffff" fill-opacity="0.18"/>
+  <text class="number" x="82" y="181" text-anchor="middle">1</text>
+  <text class="cardtitle" x="120" y="182" fill="#ffffff">Workload</text>
+
+  <circle class="bullet-workload" cx="78" cy="264" r="5"/>
+  <text class="item" x="98" y="271">Model revision and task</text>
+  <circle class="bullet-workload" cx="78" cy="329" r="5"/>
+  <text class="item" x="98" y="336">Output shape and frame rate</text>
+  <circle class="bullet-workload" cx="78" cy="394" r="5"/>
+  <text class="item" x="98" y="401">Denoising steps</text>
+  <circle class="bullet-workload" cx="78" cy="459" r="5"/>
+  <text class="item" x="98" y="466">Prompt and seed</text>
+  <circle class="bullet-workload" cx="78" cy="524" r="5"/>
+  <text class="item" x="98" y="531">Precision and guardrails</text>
+
+  <!-- Serving setup card -->
+  <rect class="card" x="560" y="135" width="480" height="525"/>
+  <path class="bar-serving" d="M574 135h452a14 14 0 0 1 14 14v64H560v-64a14 14 0 0 1 14-14z"/>
+  <circle cx="602" cy="174" r="20" fill="#ffffff" fill-opacity="0.18"/>
+  <text class="number" x="602" y="181" text-anchor="middle">2</text>
+  <text class="cardtitle" x="640" y="182" fill="#ffffff">Serving setup</text>
+
+  <circle class="bullet-serving" cx="598" cy="264" r="5"/>
+  <text class="item" x="618" y="271">Runtime and hardware</text>
+  <circle class="bullet-serving" cx="598" cy="329" r="5"/>
+  <text class="item" x="618" y="336">GPU layout and parallelism</text>
+  <circle class="bullet-serving" cx="598" cy="394" r="5"/>
+  <text class="item" x="618" y="401">Replicas, batch size, concurrency</text>
+  <circle class="bullet-serving" cx="598" cy="459" r="5"/>
+  <text class="item" x="618" y="466">Request routing and residency</text>
+  <circle class="bullet-serving" cx="598" cy="524" r="5"/>
+  <text class="item" x="618" y="531">Timing boundary</text>
+
+  <!-- Evaluation card -->
+  <rect class="card" x="1080" y="135" width="480" height="525"/>
+  <path class="bar-evaluation" d="M1094 135h452a14 14 0 0 1 14 14v64h-480v-64a14 14 0 0 1 14-14z"/>
+  <circle cx="1122" cy="174" r="20" fill="#ffffff" fill-opacity="0.18"/>
+  <text class="number" x="1122" y="181" text-anchor="middle">3</text>
+  <text class="cardtitle" x="1160" y="182" fill="#ffffff">Evaluation</text>
+
+  <circle class="bullet-evaluation" cx="1118" cy="264" r="5"/>
+  <text class="item" x="1138" y="271">Sample count, variance, failures</text>
+  <circle class="bullet-evaluation" cx="1118" cy="329" r="5"/>
+  <text class="item" x="1138" y="336">Structural validity</text>
+  <circle class="bullet-evaluation" cx="1118" cy="394" r="5"/>
+  <text class="item" x="1138" y="401">Semantic quality</text>
+  <circle class="bullet-evaluation" cx="1118" cy="459" r="5"/>
+  <text class="item" x="1138" y="466">Downstream utility</text>
+  <circle class="bullet-evaluation" cx="1118" cy="524" r="5"/>
+  <text class="item" x="1138" y="531">Output-normalized cost</text>
+
+  <rect class="note-bg" x="40" y="710" width="1520" height="95"/>
+  <text class="note" x="70" y="751">Technical validity is the current floor. Production benchmarks also need a task-specific acceptance test</text>
+  <text class="note" x="70" y="779">for semantic quality and downstream utility.</text>
+</svg>

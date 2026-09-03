@@ -1,0 +1,482 @@
+#!/usr/bin/env python3
+"""Launch and manage one node-local Cosmos3-Super deployment."""
+
+import argparse
+import json
+import os
+import pathlib
+import signal
+import socket
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.request
+import uuid
+from datetime import datetime, timezone
+
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+DEFAULT_CONFIG = ROOT / "config" / "profiles.json"
+DEFAULT_RUNTIME_DIR = pathlib.Path("/var/tmp/cosmos3-super")
+
+
+def utc_now():
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def load_config(path):
+    with open(path, encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def runtime_paths(runtime_dir):
+    return {
+        "state": runtime_dir / "deployment.json",
+        "manifest": runtime_dir / "launch-manifest.json",
+        "router_log": runtime_dir / "router.log",
+    }
+
+
+def read_state(runtime_dir, *, required=True):
+    path = runtime_paths(runtime_dir)["state"]
+    try:
+        with open(path, encoding="utf-8") as handle:
+            return json.load(handle)
+    except FileNotFoundError:
+        if required:
+            raise SystemExit(f"no deployment state at {path}")
+        return None
+
+
+def write_json(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    with open(temporary, "w", encoding="utf-8") as handle:
+        json.dump(value, handle, indent=2, sort_keys=True)
+        handle.write("\n")
+    os.replace(temporary, path)
+
+
+def run(command, *, check=True, capture=True):
+    return subprocess.run(
+        command,
+        check=check,
+        text=True,
+        capture_output=capture,
+    )
+
+
+def resolve_deployment(config, args):
+    if args.profile and args.topology:
+        raise SystemExit("choose --profile or --topology, not both")
+    profile = args.profile or "throughput"
+    if args.topology:
+        topology_name = args.topology
+        profile = "custom"
+        description = "Explicit topology override"
+        evidence_cell = None
+    else:
+        profile_config = config["profiles"].get(profile)
+        if profile_config is None:
+            raise SystemExit(f"unknown profile: {profile}")
+        topology_name = profile_config["topology"]
+        description = profile_config["description"]
+        evidence_cell = profile_config["evidence_cells"][args.platform]
+    topology = config["topologies"][topology_name]
+    defaults = config["defaults"]
+    replicas = topology["replicas"]
+    gpus_per_replica = topology["gpus_per_replica"]
+    if replicas * gpus_per_replica != 8:
+        raise SystemExit("resolved topology does not fill exactly eight GPUs")
+    base_port = args.backend_base_port or defaults["backend_base_port"]
+    front_port = args.port or defaults["front_door_port"]
+    if front_port in range(base_port, base_port + replicas):
+        raise SystemExit("front-door port overlaps the backend port range")
+    gpu_groups = [
+        list(range(index * gpus_per_replica, (index + 1) * gpus_per_replica))
+        for index in range(replicas)
+    ]
+    benchmark_backed = args.active_requests == 1
+    return {
+        "platform": args.platform,
+        "profile": profile,
+        "profile_description": description,
+        "topology": topology_name,
+        "replicas": replicas,
+        "gpus_per_replica": gpus_per_replica,
+        "gpu_groups": gpu_groups,
+        "backend_ports": list(range(base_port, base_port + replicas)),
+        "front_door": {"host": "127.0.0.1", "port": front_port},
+        "server_flags": list(topology["server_flags"]),
+        "active_requests_per_replica": args.active_requests,
+        "benchmark_backed_admission": benchmark_backed,
+        "queue_limit": args.queue_limit if args.queue_limit is not None else defaults["queue_limit"],
+        "queue_timeout_seconds": args.queue_timeout or defaults["queue_timeout_seconds"],
+        "generation_timeout_seconds": defaults["generation_timeout_seconds"],
+        "startup_timeout_seconds": args.startup_timeout or defaults["startup_timeout_seconds"],
+        "guardrails": bool(args.guardrails),
+        "model": dict(config["model"]),
+        "container": dict(config["container"]),
+        "evidence": config["platforms"][args.platform]["evidence"],
+        "evidence_cell": evidence_cell,
+    }
+
+
+def detect_gpus():
+    completed = run([
+        "nvidia-smi",
+        "--query-gpu=index,name",
+        "--format=csv,noheader",
+    ])
+    rows = []
+    for line in completed.stdout.splitlines():
+        index, name = line.split(",", 1)
+        rows.append({"index": int(index.strip()), "name": name.strip()})
+    return rows
+
+
+def check_platform(config, deployment):
+    gpus = detect_gpus()
+    if len(gpus) != 8:
+        raise SystemExit(f"expected exactly 8 GPUs, found {len(gpus)}")
+    expected = config["platforms"][deployment["platform"]]["gpu_name_contains"]
+    mismatched = [gpu for gpu in gpus if expected.lower() not in gpu["name"].lower()]
+    if mismatched:
+        detected = ", ".join(sorted({gpu["name"] for gpu in gpus}))
+        raise SystemExit(
+            f"declared platform {deployment['platform']} expects {expected}; detected {detected}"
+        )
+    return gpus
+
+
+def assert_ports_free(deployment):
+    ports = [deployment["front_door"]["port"], *deployment["backend_ports"]]
+    for port in ports:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe:
+            try:
+                probe.bind(("127.0.0.1", port))
+            except OSError as exc:
+                raise SystemExit(f"loopback port {port} is unavailable: {exc}") from exc
+
+
+def docker_ids(run_id):
+    completed = run([
+        "docker", "ps", "-aq",
+        "--filter", f"label=io.cosmos3-super.run={run_id}",
+    ])
+    return [line.strip() for line in completed.stdout.splitlines() if line.strip()]
+
+
+def wait_backend(name, timeout_s):
+    started = time.monotonic()
+    while time.monotonic() - started < timeout_s:
+        inspect = run(
+            ["docker", "inspect", "-f", "{{.State.Running}}", name],
+            check=False,
+        )
+        if inspect.returncode != 0 or inspect.stdout.strip() != "true":
+            logs = run(["docker", "logs", "--tail", "80", name], check=False)
+            raise RuntimeError(f"{name} exited before readiness\n{logs.stdout}{logs.stderr}")
+        logs = run(["docker", "logs", "--tail", "200", name], check=False)
+        if "Application startup complete" in logs.stdout or "Application startup complete" in logs.stderr:
+            return utc_now()
+        time.sleep(5)
+    raise RuntimeError(f"{name} did not become ready within {timeout_s} seconds")
+
+
+def wait_router(port, timeout_s=30):
+    deadline = time.monotonic() + timeout_s
+    url = f"http://127.0.0.1:{port}/healthz"
+    while time.monotonic() < deadline:
+        try:
+            with urllib.request.urlopen(url, timeout=2) as response:
+                if response.status == 200:
+                    health = json.load(response)
+                    if health.get("healthy_replicas") == health.get("configured_replicas"):
+                        return health
+        except (OSError, urllib.error.URLError, json.JSONDecodeError):
+            pass
+        time.sleep(0.25)
+    raise RuntimeError("router did not report healthy capacity")
+
+
+def serve(config, args):
+    runtime_dir = pathlib.Path(args.runtime_dir)
+    paths = runtime_paths(runtime_dir)
+    if read_state(runtime_dir, required=False) is not None:
+        raise SystemExit(f"deployment state already exists at {paths['state']}; run stop first")
+    deployment = resolve_deployment(config, args)
+    deployment["run_id"] = f"cosmos3-{uuid.uuid4().hex[:12]}"
+    deployment["created_utc"] = utc_now()
+    deployment["runtime_identity"] = "vLLM 0.25.0 in pinned vLLM-Omni image"
+    deployment["router_policy"] = "round_robin_idle"
+
+    if args.dry_run:
+        deployment["mode"] = "dry-run"
+        print(json.dumps(deployment, indent=2, sort_keys=True))
+        return 0
+
+    if deployment["active_requests_per_replica"] != 1:
+        raise SystemExit(
+            "the router currently enforces one active request per replica; "
+            "higher admission remains an experimental future mode"
+        )
+    check_platform(config, deployment)
+    assert_ports_free(deployment)
+    if args.guardrails and not os.environ.get("HF_TOKEN"):
+        raise SystemExit("--guardrails requires HF_TOKEN after accepting the guardrail repository terms")
+    cache_dir = pathlib.Path(args.cache_dir).expanduser()
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    deployment["phase"] = "starting"
+    write_json(paths["state"], deployment)
+
+    image = f"{deployment['container']['image']}@{deployment['container']['digest']}"
+    started_names = []
+    readiness = []
+    router = None
+    router_log = None
+    try:
+        for index, (gpu_group, port) in enumerate(zip(
+            deployment["gpu_groups"], deployment["backend_ports"]
+        )):
+            name = f"{deployment['run_id']}-r{index}"
+            gpu_csv = ",".join(str(gpu) for gpu in gpu_group)
+            command = [
+                "docker", "run", "-d", "--name", name,
+                "--label", f"io.cosmos3-super.run={deployment['run_id']}",
+                "--label", "io.cosmos3-super.role=backend",
+                "--gpus", f"device={gpu_csv}",
+                "--ipc=host", "--shm-size", "32g",
+                "--ulimit", "nofile=1048576:1048576",
+                "-v", f"{cache_dir}:/root/.cache/huggingface",
+                "-p", f"127.0.0.1:{port}:8000",
+                "-e", "VLLM_OMNI_VIDEO_SYNC_TIMEOUT=5400",
+            ]
+            if args.guardrails:
+                command.extend(["-e", "HF_TOKEN", "-e", "HF_HUB_DISABLE_XET=1"])
+            command.extend([
+                image,
+                "vllm", "serve", deployment["model"]["id"],
+                "--revision", deployment["model"]["revision"],
+                "--omni", "--host", "0.0.0.0", "--port", "8000",
+                "--init-timeout", "1800",
+                *deployment["server_flags"],
+            ])
+            if not args.guardrails:
+                command.append("--no-guardrails")
+            container_id = run(command).stdout.strip()
+            started_names.append(name)
+            ready_utc = wait_backend(name, deployment["startup_timeout_seconds"])
+            readiness.append({
+                "replica": f"r{index}",
+                "container_name": name,
+                "container_id": container_id[:12],
+                "gpu_group": gpu_group,
+                "backend_port": port,
+                "ready_utc": ready_utc,
+            })
+
+        runtime_dir.mkdir(parents=True, exist_ok=True)
+        backends = ",".join(
+            f"http://127.0.0.1:{port}" for port in deployment["backend_ports"]
+        )
+        router_command = [
+            sys.executable, str(ROOT / "serving" / "router.py"),
+            "--host", "127.0.0.1",
+            "--port", str(deployment["front_door"]["port"]),
+            "--backends", backends,
+            "--profile", deployment["profile"],
+            "--topology", deployment["topology"],
+            "--run-id", deployment["run_id"],
+            "--queue-limit", str(deployment["queue_limit"]),
+            "--queue-timeout", str(deployment["queue_timeout_seconds"]),
+            "--backend-timeout", str(deployment["generation_timeout_seconds"]),
+            "--model-revision", deployment["model"]["revision"],
+            "--container-digest", deployment["container"]["digest"],
+            "--runtime-identity", deployment["runtime_identity"],
+        ]
+        if deployment["guardrails"]:
+            router_command.append("--guardrails")
+        router_log = open(paths["router_log"], "ab", buffering=0)
+        router = subprocess.Popen(
+            router_command,
+            stdin=subprocess.DEVNULL,
+            stdout=router_log,
+            stderr=subprocess.STDOUT,
+            start_new_session=True,
+        )
+        deployment["router_pid"] = router.pid
+        deployment["phase"] = "router_starting"
+        write_json(paths["state"], deployment)
+        wait_router(deployment["front_door"]["port"])
+        deployment["replica_readiness"] = readiness
+        deployment["ready_utc"] = utc_now()
+        deployment["phase"] = "ready"
+        deployment["endpoint"] = (
+            f"http://127.0.0.1:{deployment['front_door']['port']}/v1/videos/sync"
+        )
+        write_json(paths["state"], deployment)
+        write_json(paths["manifest"], deployment)
+        print(json.dumps({
+            "status": "ready",
+            "profile": deployment["profile"],
+            "topology": deployment["topology"],
+            "endpoint": deployment["endpoint"],
+            "manifest": str(paths["manifest"]),
+        }, indent=2))
+        return 0
+    except Exception as exc:
+        if router is not None and router.poll() is None:
+            router.terminate()
+            try:
+                router.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                router.kill()
+        if started_names:
+            run(["docker", "rm", "-f", *started_names], check=False)
+        try:
+            paths["state"].unlink()
+        except FileNotFoundError:
+            pass
+        raise SystemExit(f"deployment failed: {exc}") from exc
+    finally:
+        if router_log is not None:
+            router_log.close()
+
+
+def router_process_matches(pid, run_id):
+    try:
+        command = pathlib.Path(f"/proc/{pid}/cmdline").read_bytes().replace(b"\0", b" ").decode()
+    except (FileNotFoundError, PermissionError, ProcessLookupError):
+        return False
+    return "serving/router.py" in command and f"--run-id {run_id}" in command
+
+
+def query_router(state):
+    url = f"http://127.0.0.1:{state['front_door']['port']}/status"
+    try:
+        with urllib.request.urlopen(url, timeout=3) as response:
+            return json.load(response)
+    except (OSError, urllib.error.URLError, json.JSONDecodeError):
+        return None
+
+
+def status(_config, args):
+    state = read_state(pathlib.Path(args.runtime_dir))
+    observed = query_router(state)
+    ids = docker_ids(state["run_id"])
+    containers = []
+    for container_id in ids:
+        inspected = run([
+            "docker", "inspect", "-f",
+            "{{.Name}}|{{.State.Running}}|{{.State.Status}}", container_id,
+        ], check=False)
+        if inspected.returncode == 0:
+            name, running, container_status = inspected.stdout.strip().split("|", 2)
+            containers.append({
+                "name": name.lstrip("/"),
+                "running": running == "true",
+                "status": container_status,
+            })
+    result = {
+        "run_id": state["run_id"],
+        "profile": state["profile"],
+        "topology": state["topology"],
+        "phase": state.get("phase", "unknown"),
+        "benchmark_backed_admission": state["benchmark_backed_admission"],
+        "model": state["model"],
+        "container": state["container"],
+        "containers": containers,
+        "router": observed or {"healthy": False, "detail": "status endpoint unavailable"},
+    }
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return 0 if observed and observed.get("healthy_replicas", 0) else 1
+
+
+def stop(_config, args):
+    runtime_dir = pathlib.Path(args.runtime_dir)
+    paths = runtime_paths(runtime_dir)
+    state = read_state(runtime_dir)
+    ids = docker_ids(state["run_id"])
+    pid = int(state.get("router_pid", 0))
+    router_match = bool(pid and router_process_matches(pid, state["run_id"]))
+    preview = {
+        "run_id": state["run_id"],
+        "container_ids": ids,
+        "router_pid": pid if router_match else None,
+    }
+    print(json.dumps({"stop_preview": preview}, indent=2))
+    if args.dry_run:
+        return 0
+    if pid and not router_match:
+        print(
+            "recorded router PID is absent or belongs to another process; signal skipped",
+            file=sys.stderr,
+        )
+    if router_match:
+        os.kill(pid, signal.SIGTERM)
+    if ids:
+        removed = run(["docker", "rm", "-f", *ids], check=False)
+        if removed.returncode != 0:
+            raise SystemExit(f"container removal failed: {removed.stderr.strip()}")
+    for path in (paths["state"], paths["manifest"]):
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            pass
+    print(json.dumps({"status": "stopped", "run_id": state["run_id"]}))
+    return 0
+
+
+def build_parser(config):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--runtime-dir",
+        default=os.environ.get("COSMOS3_SUPER_RUNTIME_DIR", str(DEFAULT_RUNTIME_DIR)),
+    )
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    serve_parser = subparsers.add_parser("serve", help="launch replicas and the node-local router")
+    serve_parser.add_argument("--platform", required=True, choices=config["platforms"])
+    serve_parser.add_argument("--profile", choices=config["profiles"])
+    serve_parser.add_argument("--topology", choices=config["topologies"])
+    serve_parser.add_argument("--port", type=int)
+    serve_parser.add_argument("--backend-base-port", type=int)
+    serve_parser.add_argument("--queue-limit", type=int)
+    serve_parser.add_argument("--queue-timeout", type=float)
+    serve_parser.add_argument("--startup-timeout", type=int)
+    serve_parser.add_argument("--active-requests", type=int, default=1)
+    serve_parser.add_argument("--guardrails", action="store_true")
+    serve_parser.add_argument("--cache-dir", default="~/.cache/huggingface")
+    serve_parser.add_argument("--dry-run", action="store_true")
+
+    subparsers.add_parser("status", help="read observed deployment and router state")
+    stop_parser = subparsers.add_parser("stop", help="stop the exact owned deployment")
+    stop_parser.add_argument("--dry-run", action="store_true")
+    return parser
+
+
+def main():
+    preliminary = argparse.ArgumentParser(add_help=False)
+    preliminary.add_argument("--config", default=str(DEFAULT_CONFIG))
+    known, _ = preliminary.parse_known_args()
+    config = load_config(known.config)
+    parser = build_parser(config)
+    args = parser.parse_args()
+    if args.command == "serve":
+        if args.active_requests < 1:
+            parser.error("--active-requests must be positive")
+        if args.queue_limit is not None and args.queue_limit < 0:
+            parser.error("--queue-limit must be nonnegative")
+        return serve(config, args)
+    if args.command == "status":
+        return status(config, args)
+    if args.command == "stop":
+        return stop(config, args)
+    parser.error("unknown command")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

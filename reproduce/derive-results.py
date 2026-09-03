@@ -25,7 +25,7 @@ def parse_utc(value):
 def strict_valid(record):
     return (
         record.get("http_status") == 200
-        and record.get("output_bytes", 0) > 0
+        and (record.get("output_bytes") or 0) > 0
         and record.get("technical_valid") is True
         and record.get("failure_reason") is None
         and isinstance(record.get("video_validation"), dict)
